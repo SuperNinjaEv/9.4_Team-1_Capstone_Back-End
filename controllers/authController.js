@@ -87,7 +87,6 @@ auth.post('/token-sign-in', (req, res)=>{
     jwt.verify(TOKEN, process.env.SECRET_KEY, async (error, account)=>{
         console(account,error)
         if(account && !error){
-            const EXISTING_ACCOUNT = await findUser(account.email)
             res
             .cookie('token', TOKEN, {
                 origin:process.env.ORIGIN,
