@@ -5,7 +5,6 @@ const {findAccount, addAccount} = require('../queries/auth')
 
 auth.post('/signup', async (req, res)=>{
     const {email, password} = req.body
-    console.log(email)
     const existingAccount = await findAccount(email)
     if(existingAccount.length > 0){
         res.status(405).json({error:'Account associated with that email already exist'})
@@ -18,13 +17,10 @@ auth.post('/signup', async (req, res)=>{
                 email,
                 password:hash,
             }
-            let flag = 1
             const newAccount = await addAccount(newAccountInfo)
             if(newAccount.error){
-                flag = 0
                 res.status(500).send(newAccount.error)
             }else{
-                flag = 1
                 const TOKEN = jwt.sign({email:email,password:password}, process.env.SECRET_KEY)
                 res
                 .cookie('token', TOKEN, {
@@ -85,9 +81,7 @@ auth.post('/token-sign-in', (req, res)=>{
     const TIME = 60000
     if(cookie === undefined)return
     const TOKEN = cookie.split('token=')[1].split(';')[0]
-    console.log(TOKEN)
     jwt.verify(TOKEN, process.env.SECRET_KEY, async (error, account)=>{
-        console.log(account,error)
         if(account && !error){
             res
             .cookie('token', TOKEN, {

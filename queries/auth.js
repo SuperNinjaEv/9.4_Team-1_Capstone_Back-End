@@ -6,7 +6,6 @@ const db = require('../db/dbConfig')
  * @returns {object} credentials for user's account
  */
 const findAccount = async email => {
-    console.log(email)
   const ACCOUNT = await db.any('SELECT * FROM user_cred WHERE email=$1', email)
   if (ACCOUNT) {
     return ACCOUNT
