@@ -11,7 +11,7 @@ const getOnePost = async (post_id) =>
   await db.one("SELECT * FROM posts WHERE user_id=$1, post_id=$2",[post_id]);
 
 
-const updateOnePost = async (post_id, posts) => {
+const updateOnePost = async (posts) => {
   const { post_id, title, tags, body, created_at, edited_at} = posts;
 
   return await db.one(

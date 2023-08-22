@@ -1,10 +1,11 @@
 const auth = require('express').Router()
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const {findAccount, addAccount} = require('')
+const {findAccount, addAccount} = require('../queries/auth')
 
 auth.post('/signup', async (req, res)=>{
     const {email, password} = req.body
+    console.log(email)
     const existingAccount = await findAccount(email)
     if(existingAccount.length > 0){
         res.status(405).json({error:'Account associated with that email already exist'})
@@ -26,7 +27,7 @@ auth.post('/signup', async (req, res)=>{
                 flag = 1
                 const TOKEN = jwt.sign({email:email,password:password}, process.env.SECRET_KEY)
                 res
-                cookies('token', TOKEN, {
+                .cookie('token', TOKEN, {
                     origin:process.env.ORIGIN,
                     httpOnly:true,
                     secure:true,
@@ -44,13 +45,13 @@ auth.post('/signup', async (req, res)=>{
 auth.post('/login', async (req, res)=>{
     const {email, password, persist} = req.body
     try{
-        const EXISTING_ACCOUNT = await findUser(email)
+        const EXISTING_ACCOUNT = await findAccount(email)
         if(EXISTING_ACCOUNT.length === 0){
             res.status(405).json({error:' Email not found, register now'})
         }else{
-            bcrypt.compare(password, EXISTING_ACCOUNT[0], (error,result)=>{
+            bcrypt.compare(password, EXISTING_ACCOUNT[0].password, (error,result)=>{
                 if(error){
-                    res.status(500).json({error:"Sorry, something went wrong."})
+                    res.status(500).json({error:"Sorry, something went wrong." + error})
                 }else if(result){
                     const TOKEN = jwt.sign({email:email,password:password}, process.env.SECRET_KEY)
                     const TIME = 60000
@@ -67,7 +68,7 @@ auth.post('/login', async (req, res)=>{
                         secure:true,
                     })
                     .status(200)
-                    .json({message:'Welcome Back!'})
+                    .json({message:'Welcome Back!', token:TOKEN})
                 }else if(!result){
                     res.status(400).json({error:"Email or password do not match."})
                 }
@@ -81,11 +82,12 @@ auth.post('/login', async (req, res)=>{
 
 auth.post('/token-sign-in', (req, res)=>{
     const {cookie} = req.headers
+    const TIME = 60000
     if(cookie === undefined)return
     const TOKEN = cookie.split('token=')[1].split(';')[0]
     console.log(TOKEN)
     jwt.verify(TOKEN, process.env.SECRET_KEY, async (error, account)=>{
-        console(account,error)
+        console.log(account,error)
         if(account && !error){
             res
             .cookie('token', TOKEN, {
@@ -100,7 +102,8 @@ auth.post('/token-sign-in', (req, res)=>{
                 secure:true,
             })
             .status(200)
-            .json({message:`Welcome back ${user.email}`})
+            .json({message:`Welcome back ${account.email}`})
         }
     })
 })
+ module.exports = auth
