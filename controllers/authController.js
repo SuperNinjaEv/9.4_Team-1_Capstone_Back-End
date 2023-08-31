@@ -28,7 +28,7 @@ auth.post('/signup', async (req, res)=>{
                     httpOnly:true,
                     secure:true,
                 })
-                .cookie(checkToken, true, {
+                .cookie('checkToken', true, {
                     origin:process.env.ORIGIN,
                     secure:true,
                 })
