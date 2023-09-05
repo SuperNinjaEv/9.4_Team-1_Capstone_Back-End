@@ -3,7 +3,7 @@ const cors = require('cors')
 const jsonParser = express.json()
 const app = express()
 const authController = require('./controllers/authController')
-const postsController = require("./controllers/postsController");
+let postsController = require("./controllers/postsController");
 
 app.use(cors({
     origin:process.env.ORIGIN || 'http://localhost:3000',
