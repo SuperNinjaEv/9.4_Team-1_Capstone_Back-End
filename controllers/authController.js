@@ -1,9 +1,10 @@
-const auth = require('express').Router()
+const auth = require('express').Router();
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const {findAccount, addAccount} = require('../queries/auth')
 
 auth.post('/signup', async (req, res)=>{
+    //async (req, res)=>{
     const {email, password} = req.body
     const existingAccount = await findAccount(email)
     if(existingAccount.length > 0){
