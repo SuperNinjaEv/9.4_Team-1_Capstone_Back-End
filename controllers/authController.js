@@ -4,24 +4,32 @@ const bcrypt = require('bcrypt')
 const {findAccount, addAccount} = require('../queries/auth')
 
 auth.post('/signup', async (req, res)=>{
-    const {email, password} = req.body
-    const existingAccount = await findAccount(email)
+    const newUser = {
+        name:req.body.name,
+        email:req.body.email,
+        password:req.body.password,
+        username:req.body.username,
+        dob:req.body.dob,
+        city_state:req.body.city_state,
+    }
+
+    const existingAccount = await findAccount(newUser.email)
     if(existingAccount.length > 0){
         res.status(405).json({error:'Account associated with that email already exist'})
     }else if(existingAccount.length === 0){
-        bcrypt.hash(password, 10, async(error, hash)=>{
+        bcrypt.hash(newUser.password, 10, async(error, hash)=>{
             if(error){
                 res.status(error).json({error: 'server error'})
             }
             const newAccountInfo = {
-                email,
+                ...newUser,
                 password:hash,
             }
             const newAccount = await addAccount(newAccountInfo)
             if(newAccount.error){
                 res.status(500).send(newAccount.error)
             }else{
-                const TOKEN = jwt.sign({email:email,password:password}, process.env.SECRET_KEY)
+                const TOKEN = jwt.sign({email:newAccountInfo.email,password:newAccountInfo.password}, process.env.SECRET_KEY)
                 res
                 .cookie('token', TOKEN, {
                     origin:process.env.ORIGIN,
@@ -76,15 +84,15 @@ auth.post('/login', async (req, res)=>{
     }
 })
 
-auth.post('/token-sign-in', (req, res)=>{
+auth.post('/token', (req, res)=>{
     const {cookie} = req.headers
     const TIME = 60000
     if(cookie === undefined)return
-    const TOKEN = cookie.split('token=')[1].split(';')[0]
-    jwt.verify(TOKEN, process.env.SECRET_KEY, async (error, account)=>{
+    const token = cookie.split('token=')[1].split(';')[0]
+    jwt.verify(token, process.env.SECRET_KEY, async (error, account)=>{
         if(account && !error){
             res
-            .cookie('token', TOKEN, {
+            .cookie('token', token, {
                 origin:process.env.ORIGIN,
                 expires:new Date().time + TIME,
                 httpOnly:true,

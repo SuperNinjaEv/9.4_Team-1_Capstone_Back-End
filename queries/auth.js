@@ -6,7 +6,7 @@ const db = require('../db/dbConfig')
  * @returns {object} credentials for user's account
  */
 const findAccount = async email => {
-  const ACCOUNT = await db.any('SELECT * FROM user_cred WHERE email=$1', email)
+  const ACCOUNT = await db.any('SELECT * FROM users WHERE email=$1', email)
   if (ACCOUNT) {
     return ACCOUNT
   }
@@ -20,8 +20,8 @@ const findAccount = async email => {
  */
 const addAccount = async account => {
   const NEW_ACCOUNT = await db.one(
-    'INSERT INTO user_cred (email, password) VALUES ($1,$2) RETURNING *',
-    [account.email, account.password]
+    'INSERT INTO users (name, email, password, username, dob, city_state) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *',
+    [account.name, account.email, account.password, account.username, account.dob, account.city_state]
   )
   if (NEW_ACCOUNT.email) {
     return NEW_ACCOUNT

@@ -27,21 +27,29 @@ const deletePost = async (post_id) =>
   const createPosts = async (posts) => {
 
     const insertedPosts = await db.one(
-      "INSERT INTO posts (title, tags, body, created_at, edited_at) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO posts (title, tags, body, user_id) VALUES($1, $2, $3, $4) RETURNING *",
       [
         posts.title,
         posts.tags,
         posts.body,
-        posts.created_at,
-        posts.edited_at,
-        posts.date,
-        posts.night,
+        posts.user_id
       ]
     );
   
     return insertedPosts;
   }
-
+ 
+  const postMedia = async file => {
+    const fileUploaded = await db.one(
+      'INSERT INTO post_media (file_name, file_size, file_url, post_id) VALUES ($1, $2, $3, $4) RETURNING *',
+      [file.file_name, file.file_size, file.file_url, file.post_id]
+    )
+    if(!fileUploaded.error){
+        return fileUploaded
+    }else{
+      return fileUploaded.error
+    }
+  }
 
 
 module.exports = {
@@ -51,4 +59,5 @@ module.exports = {
   updateOnePost,
   deletePost,
   createPosts,
+  postMedia
 };
