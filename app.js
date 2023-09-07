@@ -8,7 +8,7 @@ const postsController = require("./controllers/postsController");
 const fileUpload = require('express-fileupload')
 const s3 = new S3Client()
 app.use(cors({
-    origin:process.env.ORIGIN || 'http://localhost:3000',
+    origin:process.env.ORIGIN || 'http://localhost:5173',
     credentials:true,
 }))
 app.use(fileUpload())
