@@ -12,8 +12,8 @@ CREATE TABLE users (
   dob VARCHAR(10) NOT NULL,
   city_state TEXT NOT NULL,
   profile_pic BYTEA,
-  birth_date DATE,
-  locale_home POINT,
+  -- birth_date DATE,
+  -- locale_home POINT,
   learning_interest TEXT,
   current_skillset TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
