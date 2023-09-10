@@ -51,6 +51,7 @@ auth.post('/signup', async (req, res) => {
     })
   }
 })
+
 auth.post('/login', async (req, res) => {
   const {email, password, persist} = req.body
   try {

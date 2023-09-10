@@ -39,13 +39,13 @@ const updateOnePost = async (post_id,posts) => {
 //function will get a post from a single user given the email to find the userid and hence ensuring user authenticated before posts are brought up for deletion
 /**
  * deletes a single post from a user based on email and post identification
- * @param {string} email - email associated with a user_cred account
  * @param {number} post_id - a specific post's identification number
  **/
 
 const deletePost = async (post_id) =>
   await db.one("DELETE FROM posts WHERE post_id=$1 RETURNING *", post_id);
   
+
 
   const createPosts = async (posts) => {
 
@@ -77,7 +77,6 @@ const deletePost = async (post_id) =>
 
 module.exports = {
   getAllPostsFromUser,
-  // getAllPosts,
   getOnePost,
   updateOnePost,
   deletePost,

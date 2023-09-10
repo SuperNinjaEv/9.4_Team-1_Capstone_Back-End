@@ -9,3 +9,10 @@ INSERT INTO posts (title, tags, body, created_at, edited_at, userid) VALUES ('Ho
 
 INSERT INTO posts (title, tags, body, created_at, edited_at, userid) VALUES ('How to draw', 'draw', 'mountain view','20230423 11:42:35.173', null, 1);
 
+-- INSERT INTO tool_instrument (Paint Brush)
+
+INSERT INTO hobby (name_hobby) VALUES ('Painting');
+
+INSERT INTO hobby (name_hobby) VALUES ('Pottery');
+
+INSERT INTO hobby (name_hobby) VALUES ('Drawing');
