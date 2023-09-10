@@ -6,7 +6,7 @@ const {findAccount, addAccount, getAccountInfo} = require('../queries/auth')
 auth.post('/signup', async (req, res) => {
   const newUser = {
     name: req.body.name,
-    email: req.body.email,
+    email: req.body.email.toLowerCase(),
     password: req.body.password,
     username: req.body.username,
     dob: req.body.dob,
@@ -55,7 +55,7 @@ auth.post('/signup', async (req, res) => {
 auth.post('/login', async (req, res) => {
   const {email, password, persist} = req.body
   try {
-    const EXISTING_ACCOUNT = await findAccount(email)
+    const EXISTING_ACCOUNT = await findAccount(email.toLowerCase())
     
     if (EXISTING_ACCOUNT.length === 0) {
       res.status(405).json({error: ' Email not found, register now'})
@@ -70,7 +70,7 @@ auth.post('/login', async (req, res) => {
               .json({error: 'Sorry, something went wrong.' + error})
           } else if (result) {
             const token = jwt.sign(
-              {email: email, password: password},
+              {email: email.toLowerCase(), password: password},
               process.env.SECRET_KEY
             )
             const TIME = 60000
