@@ -41,15 +41,17 @@ CREATE TABLE hobby (
 
 
 
+
 CREATE TABLE tools (
-  tool_id SERIAL PRIMARY KEY,
-  name_tools TEXT,
-  description TEXT,
-  price INT,
-  stock_quantity INT,
-  item_condition TEXT,
-  hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
-);
+    tool_id SERIAL PRIMARY KEY,
+    name_tools TEXT,
+    description TEXT,
+    price INT,
+    stock_quantity INT,
+    item_condition TEXT,
+    thumbnail TEXT,
+  user_id INT NOT NULL REFERENCES users(user_id)
+  );
 
 
 CREATE TABLE item_exchange_barter (
@@ -77,3 +79,12 @@ CREATE TABLE post_media (
 --   tags VARCHAR(100),
 
 -- )
+
+CREATE TABLE tool_media (
+    file_id SERIAL PRIMARY KEY,
+    file_name TEXT NOT NULL,
+    file_size INT,
+    file_type TEXT,
+    file_url TEXT NOT NULL,
+    tool_id INT NOT NULL REFERENCES tools(tool_id)
+  );
