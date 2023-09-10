@@ -15,7 +15,7 @@ app.use(
 )
 
 app.use(jsonParser)
-// app.use(fileUpload())
+app.use(fileUpload())
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', req.headers.origin)
   res.header(

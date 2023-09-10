@@ -28,6 +28,7 @@ CREATE TABLE posts (
   body TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   edited_at TIMESTAMP NULL DEFAULT NULL,
+  thumbnail TEXT,
   user_id INT NOT NULL REFERENCES users(user_id)
 );
 
