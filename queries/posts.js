@@ -39,7 +39,6 @@ const updateOnePost = async (post_id,posts) => {
 //function will get a post from a single user given the email to find the userid and hence ensuring user authenticated before posts are brought up for deletion
 /**
  * deletes a single post from a user based on email and post identification
- * @param {string} email - email associated with a user_cred account
  * @param {number} post_id - a specific post's identification number
  **/
 
@@ -49,7 +48,6 @@ const deletePost = async (post_id) =>
 
 /**
  * creates a single post from a user based on email which will determine the userid and thus the user who is making the post
- * @param {string} email - email associated with a user_cred account
  * @param {number} post_id - a specific post's identification number
  * @param {object} posts - the post's data to be edited
  * @returns {object} a single post via json format
@@ -69,17 +67,9 @@ const createPosts = async (post) => {
 
   return newPost;
 };
-//scrap code below for maybe other purpose
-// //ALL POSTS FROM ALL USERS EDIT THIS
-// const getAllPosts = async () => await db.any("SELECT * FROM posts")
-
-// const getOnePost = async (userid, post_id) =>
-//   await db.one("SELECT * FROM posts WHERE userid=$1, post_id=$2",[userid, post_id]);
-//scrap code above for maybe other purpose
 
 module.exports = {
   getAllPostsFromUser,
-  // getAllPosts,
   getOnePost,
   updateOnePost,
   deletePost,

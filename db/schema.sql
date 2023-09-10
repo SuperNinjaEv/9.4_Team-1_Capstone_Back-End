@@ -33,3 +33,38 @@ CREATE TABLE posts (
   edited_at TIMESTAMP NULL DEFAULT NULL,
   userid INT NOT NULL REFERENCES user_cred(userid)
 );
+
+
+
+
+
+
+
+
+CREATE TABLE hobby (
+  hobby_id SERIAL PRIMARY KEY,
+  name_hobby TEXT NOT NULL
+);
+
+
+
+CREATE TABLE tools (
+  tool_id SERIAL PRIMARY KEY,
+  name_tools TEXT,
+  description TEXT,
+  price INT,
+  stock_quantity INT,
+  item_condition TEXT,
+  hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
+);
+
+
+CREATE TABLE item_exchange_barter (
+  barter_id SERIAL PRIMARY KEY,
+  confirm_trade BOOLEAN,
+  date_meeting DATE,
+  location POINT,
+  stock_quantity INT,
+  tool_id INT NOT NULL REFERENCES tool_instrument(tool_id)
+
+);

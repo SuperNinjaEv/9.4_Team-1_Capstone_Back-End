@@ -4,6 +4,7 @@ const jsonParser = express.json()
 const app = express()
 const authController = require('./controllers/authController')
 let postsController = require("./controllers/postsController");
+let toolsController = require("./controllers/toolsController")
 
 app.use(cors({
     origin:process.env.ORIGIN || 'http://localhost:3000',
@@ -20,6 +21,7 @@ app.use((req,res,next)=>{
 app.get('/', (_,res)=>res.send('hello'))
 app.use('/auth', authController)
 app.use("/posts", postsController);
+app.use("/tools", toolsController);
 
 
 
