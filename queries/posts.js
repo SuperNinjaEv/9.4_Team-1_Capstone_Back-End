@@ -47,35 +47,33 @@ const deletePost = async (post_id) =>
   await db.one("DELETE FROM posts WHERE post_id=$1 RETURNING *", post_id);
   
 
-/**
- * creates a single post from a user based on email which will determine the userid and thus the user who is making the post
- * @param {string} email - email associated with a user_cred account
- * @param {number} post_id - a specific post's identification number
- * @param {object} posts - the post's data to be edited
- * @returns {object} a single post via json format
- */
-const createPosts = async (post) => {
-  const newPost = await db.one(
-    "INSERT INTO posts (title, tags, body, created_at, edited_at, userid) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
-    [
-      post.title,
-      post.tags,
-      post.body,
-      post.created_at,
-      post.edited_at,
-      post.userid,
-    ]
-  );
+  const createPosts = async (posts) => {
 
-  return newPost;
-};
-//scrap code below for maybe other purpose
-// //ALL POSTS FROM ALL USERS EDIT THIS
-// const getAllPosts = async () => await db.any("SELECT * FROM posts")
+    const insertedPosts = await db.one(
+      "INSERT INTO posts (title, tags, body, user_id) VALUES($1, $2, $3, $4) RETURNING *",
+      [
+        posts.title,
+        posts.tags,
+        posts.body,
+        posts.user_id
+      ]
+    );
+  
+    return insertedPosts;
+  }
+ 
+  const postMedia = async file => {
+    const fileUploaded = await db.one(
+      'INSERT INTO post_media (file_name, file_size, file_url, post_id) VALUES ($1, $2, $3, $4) RETURNING *',
+      [file.file_name, file.file_size, file.file_url, file.post_id]
+    )
+    if(!fileUploaded.error){
+        return fileUploaded
+    }else{
+      return fileUploaded.error
+    }
+  }
 
-// const getOnePost = async (userid, post_id) =>
-//   await db.one("SELECT * FROM posts WHERE userid=$1, post_id=$2",[userid, post_id]);
-//scrap code above for maybe other purpose
 
 module.exports = {
   getAllPostsFromUser,
@@ -84,4 +82,5 @@ module.exports = {
   updateOnePost,
   deletePost,
   createPosts,
+  postMedia
 };
