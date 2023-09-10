@@ -90,5 +90,5 @@ module.exports = {
   deletePost,
   createPosts,
   postMedia,
-  addThumbnail
+  addThumbnail,
 };

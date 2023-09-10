@@ -54,14 +54,14 @@ const deletetool = async (tool_id) =>
  */
 const createtools = async (tool) => {
   const newtool = await db.one(
-    "INSERT INTO tools (name_tools, description, price, stock_quantity, item_condition, hobby_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+    "INSERT INTO tools (name_tools, description, price, stock_quantity, item_condition, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
     [
       tool.name_tools,
       tool.description,
       tool.price,
       tool.stock_quantity,
       tool.item_condition,
-      tool.hobby_id
+      tool.user_id
     ]
   );
 
@@ -78,10 +78,37 @@ const createtools = async (tool) => {
 //     hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
 //   );
 
+
+const addToolMedia = async file => {
+  const fileUploaded = await db.one(
+    'INSERT INTO tool_media (file_name, file_size, file_url, tool_id) VALUES ($1, $2, $3, $4) RETURNING *',
+    [file.file_name, file.file_size, file.file_url, file.tool_id]
+  )
+  if(!fileUploaded.error){
+      return fileUploaded
+  }else{
+    return fileUploaded.error
+  }
+}
+
+
+
+const addThumbnailTools =async(thumbnail, tool_id)=>{
+  const updatePost = await db.one(
+    "UPDATE tools SET thumbnail=$1 WHERE tool_id=$2 returning *", [thumbnail, tool_id]
+  )
+  if(!updatePost.error){
+    return updatePost 
+  }
+  return updatePost.error
+}
+
 module.exports = {
   getAlltoolsFromUser,
   getOnetool,
   updateOnetool,
   deletetool,
   createtools,
+  addToolMedia,
+  addThumbnailTools,
 };
