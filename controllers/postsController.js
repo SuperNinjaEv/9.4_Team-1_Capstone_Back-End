@@ -3,78 +3,88 @@ const express = require("express");
 const posts = express.Router();
 const {
     getAllPostsFromUser,
-    getAllPosts,
+    // getAllPosts,
     getOnePost,
     updateOnePost,
     deletePost,
     createPosts,
 } = require("../queries/posts");
 
+//possible scrap code below
+// //all posts from specific user
+// posts.get("/", async (req, res) => {
+//   try {
+//     const posts = await getAllPostsFromUser();
+//     res.json(posts);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).json({ error: "something went terribly wrong!" });
+//   }
+// });
+//possible scrap code above
 
-//all posts from specific user
+
+// Get all posts from a specific user
+
 posts.get("/", async (req, res) => {
   try {
     const posts = await getAllPostsFromUser();
-    res.json(posts);
+    return res.json(posts);
   } catch (error) {
     console.log(error);
-    res.status(400).json({ error: "something went terribly wrong!" });
+    res.status(400).json({ error: "Something went terribly wrong!" });
   }
 });
 
+// Get a single post from a specific user
 
-//all posts from all users
-posts.get("/", async (req, res) => {
-    try {
-      const posts = await getAllPosts();
-      res.json(posts);
-    } catch (error) {
-      console.log(error);
-      res.status(400).json({ error: "something went terribly wrong!" });
-    }
-  });
-
-posts.get("/:id", async (req, res) => {
+posts.get("/:post_id", async (req, res) => {
   try {
-    const { id } = req.params;
-    const post = await getOnePost(id);
-    res.json(post);
+    const { post_id } = req.params;
+    const post = await getOnePost(post_id);
+    return res.json(post);
   } catch (error) {
     console.log(error);
     res.status(404).json({ error: "That post log does not exist!" });
   }
 });
 
-posts.put("/:id", async (req, res) => {
+// Edits/Updates a single post from a specific user
+
+posts.put("/:post_id", async (req, res) => {
   try {
-    const { id } = req.params;
+    const { post_id } = req.params;
     const post = req.body;
 
-    const updatedpost = await updateOnePost(id, post);
-    res.json(updatedpost);
+    const updatedpost = await updateOnePost(post_id, post);
+   return  res.json(updatedpost);
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: "Cannot update post log" });
   }
 });
 
-posts.delete("/:id", async (req, res) => {
+// Deletes a post from a specific user
+
+posts.delete("/:post_id", async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedpost = await deletePost(id);
-    res.json(deletedpost);
+    const { post_id } = req.params;
+    const deletedpost = await deletePost(post_id);
+   return res.json(deletedpost);
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: "Catastrophe! Something went terribly wrong!" });
   }
 });
 
+// Creates a post for a specific user
+
 posts.post("/", async (req, res) => {
   try {
     const post = req.body;
 
     const createdpost = await createPosts(post);
-    res.json(createdpost);
+   return res.json(createdpost);
 } catch (error) {
     console.log(error);
     console.log("Incoming request body:", req.body);
