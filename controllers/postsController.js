@@ -85,7 +85,7 @@ posts.post('/', async (req, res) => {
         console.log(file)
         if(i===0){
           uploadImageS3(file,`${createdPost.post_id}_thumbnail`)
-          const updatedPost = await addThumbnail(`${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,createdPost.post_id )
+          await addThumbnail(`${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,createdPost.post_id )
         }else{
           uploadImageS3(file,`${createdPost.post_id}_image${i}`)
           uploadImageDb(file,`${createdPost.post_id}_image${i}`, createdPost.post_id)
