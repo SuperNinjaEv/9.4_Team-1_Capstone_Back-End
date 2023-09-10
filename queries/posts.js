@@ -49,7 +49,7 @@ const deletePost = async (post_id) =>
   const createPosts = async (posts) => {
 
     const insertedPosts = await db.one(
-      "INSERT INTO posts (title, tags, body, user_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO posts (title, tags, body, user_id) VALUES($1, $2, $3, $4) RETURNING *",
       [
         posts.title,
         posts.tags,

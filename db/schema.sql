@@ -58,7 +58,7 @@ CREATE TABLE item_exchange_barter (
   date_meeting DATE,
   location POINT,
   stock_quantity INT,
-  tool_id INT NOT NULL REFERENCES tool_instrument(tool_id)
+  tool_id INT NOT NULL REFERENCES tools(tool_id)
 
 );
 

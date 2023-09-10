@@ -9,6 +9,7 @@ const {
   deletePost,
   createPosts,
   postMedia,
+  addThumbnail,
 } = require('../queries/posts')
 const s3 = new S3Client()
 
@@ -80,12 +81,14 @@ posts.post('/', async (req, res) => {
     const post = req.body
     const createdPost = await createPosts(post)
     if (!createdPost.error) {
-      files.forEach((file, i) => {
+      files.forEach(async(file, i) => {
         console.log(file)
         if(i===0){
-          // uploadImage(file,`${createdPost.post_id}_thumbnail${i}`, createdPost.post_id)
+          uploadImageS3(file,`${createdPost.post_id}_thumbnail`)
+          const updatedPost = await addThumbnail(`${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,createdPost.post_id )
         }else{
-          // uploadImage(file,`${createdPost.post_id}_image${i}`, createdPost.post_id)
+          uploadImageS3(file,`${createdPost.post_id}_image${i}`)
+          uploadImageDb(file,`${createdPost.post_id}_image${i}`, createdPost.post_id)
         }
       }) 
     }
@@ -98,19 +101,13 @@ posts.post('/', async (req, res) => {
 })
 
 
-const uploadImage = async(file,imageName,post_id)=>{
+const uploadImageS3 = async(file,imageName,post_id)=>{
   const params = {
     Bucket: process.env.BUCKET_NAME,
     Key: imageName,
     Body: file.data,
   }
-  const dbParams = {
-    file_name: imageName,
-    file_size: file.size,
-    file_type: file.mimetype,
-    file_url: `${process.env.CLOUDFRONT_URI}${req.body.name}`,
-    post_id: post_id,
-  }
+  
   try {
     const results = await s3.send(new PutObjectCommand(params))
     console.log(
@@ -121,10 +118,26 @@ const uploadImage = async(file,imageName,post_id)=>{
         '/' +
         params.Key
     )
-    const dbResults = await postMedia(dbParams)
-    return results // For unit tests.
+    
+    return results// For unit tests.
   } catch (err) {
     console.log('Error:', err)
+  }
+}
+const uploadImageDb = async(file, imageName, post_id)=>{
+  const dbParams = {
+    file_name: imageName,
+    file_size: file.size,
+    file_type: file.mimetype,
+    file_url: `${process.env.CLOUDFRONT_URI}${imageName}`,
+    post_id: post_id,
+  }
+  const dbResults = await postMedia(dbParams)
+  if(!dbResults.error){
+    return dbResults
+  }
+  else{
+    res.status(400).json({error:dbResults.error})
   }
 }
 module.exports = posts
