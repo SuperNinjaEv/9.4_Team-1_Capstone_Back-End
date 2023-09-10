@@ -45,7 +45,7 @@ CREATE TABLE tools (
   tool_id SERIAL PRIMARY KEY,
   name_tools TEXT,
   description TEXT,
-  price INT,
+  price FLOAT,
   stock_quantity INT,
   item_condition TEXT,
   hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
