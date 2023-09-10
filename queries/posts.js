@@ -16,10 +16,10 @@ const getAllPostsFromUser = async () => await db.any("SELECT * FROM posts");
  * @returns {object} a single post via json format
  **/
 
-const getOnePost = async (post_id) =>
-  await db.one("SELECT * FROM posts WHERE post_id=$1",[post_id]);
+const getOnePost = async (post_id) =>{
+  return await db.one("SELECT * FROM posts WHERE post_id=$1",[post_id]);
 
-
+}
 //function will update a post from a single user given the email to find the userid and hence ensuring user authenticated before posts are brought up for updating action
 /**
  * gets a single post from a user based on email and post identification
@@ -28,11 +28,11 @@ const getOnePost = async (post_id) =>
  * @returns {object} a single post via json format that has been edited
  */
 const updateOnePost = async (post_id,posts) => {
-  const { title, tags, body, created_at, edited_at} = posts;
+  const { title, tags, body} = posts;
 
   return await db.one(
-    "UPDATE posts SET title=$1, tags=$2, body=$3, created_at=$4, edited_at=$5 WHERE post_id=$6 RETURNING *",
-    [title, tags, body, created_at, edited_at, post_id]
+    "UPDATE posts SET title=$1, tags=$2, body=$3, edited_at=$4 WHERE post_id=$5 RETURNING *",
+    [title, tags, body, NOW(), post_id]
   );
 };
 
@@ -42,10 +42,10 @@ const updateOnePost = async (post_id,posts) => {
  * @param {number} post_id - a specific post's identification number
  **/
 
-const deletePost = async (post_id) =>
-  await db.one("DELETE FROM posts WHERE post_id=$1 RETURNING *", post_id);
+const deletePost = async (post_id) =>{
+ return await db.one("DELETE FROM posts WHERE post_id=$1 RETURNING *", post_id);
   
-
+}
 
   const createPosts = async (posts) => {
 
