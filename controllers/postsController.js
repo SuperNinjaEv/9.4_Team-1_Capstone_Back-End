@@ -9,6 +9,7 @@ const {
   deletePost,
   createPosts,
   postMedia,
+  addThumbnail,
 } = require('../queries/posts')
 const s3 = new S3Client()
 
@@ -72,6 +73,7 @@ posts.delete('/:id', async (req, res) => {
 posts.post('/', async (req, res) => {
   const fileKeys = Object.keys(req.files)
   const files = []
+
   fileKeys.forEach(key => {
     files.push(req.files[key])
   })
@@ -79,37 +81,16 @@ posts.post('/', async (req, res) => {
     const post = req.body
     const createdPost = await createPosts(post)
     if (!createdPost.error) {
-      files.forEach(async (file, i) => {
-        console.log(createdPost.post_id)
-        const params = {
-          Bucket: process.env.BUCKET_NAME,
-          Key: `${createdPost.post_id}_image${i}`,
-          Body: file.data,
+      files.forEach(async(file, i) => {
+        console.log(file)
+        if(i===0){
+          uploadImageS3(file,`${createdPost.post_id}_thumbnail`)
+          await addThumbnail(`${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,createdPost.post_id )
+        }else{
+          uploadImageS3(file,`${createdPost.post_id}_image${i}`)
+          uploadImageDb(file,`${createdPost.post_id}_image${i}`, createdPost.post_id)
         }
-        const dbParams = {
-          file_name: `${createdPost.post_id}_image${i}`,
-          file_size: file.size,
-          file_type: file.mimetype,
-          file_url: `${process.env.CLOUDFRONT_URI}${req.body.name}`,
-          post_id: createdPost.post_id,
-        }
-        try {
-          const results = await s3.send(new PutObjectCommand(params))
-          console.log(
-            'Successfully created ' +
-              params.Key +
-              ' and uploaded it to ' +
-              params.Bucket +
-              '/' +
-              params.Key
-          )
-          const dbResults = await postMedia(dbParams)
-          console.log(dbResults)
-          return results // For unit tests.
-        } catch (err) {
-          console.log('Error:', err)
-        }
-      })
+      }) 
     }
     res.status(200).json({message: 'Post Successful', createdPost: createdPost})
   } catch (error) {
@@ -119,4 +100,44 @@ posts.post('/', async (req, res) => {
   }
 })
 
+
+const uploadImageS3 = async(file,imageName,post_id)=>{
+  const params = {
+    Bucket: process.env.BUCKET_NAME,
+    Key: imageName,
+    Body: file.data,
+  }
+  
+  try {
+    const results = await s3.send(new PutObjectCommand(params))
+    console.log(
+      'Successfully created ' +
+        params.Key +
+        ' and uploaded it to ' +
+        params.Bucket +
+        '/' +
+        params.Key
+    )
+    
+    return results// For unit tests.
+  } catch (err) {
+    console.log('Error:', err)
+  }
+}
+const uploadImageDb = async(file, imageName, post_id)=>{
+  const dbParams = {
+    file_name: imageName,
+    file_size: file.size,
+    file_type: file.mimetype,
+    file_url: `${process.env.CLOUDFRONT_URI}${imageName}`,
+    post_id: post_id,
+  }
+  const dbResults = await postMedia(dbParams)
+  if(!dbResults.error){
+    return dbResults
+  }
+  else{
+    res.status(400).json({error:dbResults.error})
+  }
+}
 module.exports = posts

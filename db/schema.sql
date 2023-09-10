@@ -28,6 +28,7 @@ CREATE TABLE posts (
   body TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   edited_at TIMESTAMP NULL DEFAULT NULL,
+  thumbnail TEXT,
   user_id INT NOT NULL REFERENCES users(user_id)
 );
 
@@ -57,7 +58,7 @@ CREATE TABLE item_exchange_barter (
   date_meeting DATE,
   location POINT,
   stock_quantity INT,
-  tool_id INT NOT NULL REFERENCES tool_instrument(tool_id)
+  tool_id INT NOT NULL REFERENCES tools(tool_id)
 
 );
 

@@ -1,5 +1,4 @@
 const db = require("../db/dbConfig.js");
-const { findAccount } = require("./auth.js");
 
 //function will get all post from a single user given the email to find the userid and hence ensuring user authenticated before posts are brought up for CRUD actions
 /**
@@ -74,6 +73,15 @@ const deletePost = async (post_id) =>{
     }
   }
 
+  const addThumbnail =async(thumbnail, post_id)=>{
+    const updatePost = await db.one(
+      "UPDATE posts SET thumbnail=$1 WHERE post_id=$2 returning *", [thumbnail, post_id]
+    )
+    if(!updatePost.error){
+      return updatePost 
+    }
+    return updatePost.error
+  }
 
 module.exports = {
   getAllPostsFromUser,
@@ -81,5 +89,6 @@ module.exports = {
   updateOnePost,
   deletePost,
   createPosts,
-  postMedia
+  postMedia,
+  addThumbnail
 };
