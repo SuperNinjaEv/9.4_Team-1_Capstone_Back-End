@@ -11,6 +11,7 @@ auth.post('/signup', async (req, res) => {
     username: req.body.username,
     dob: req.body.dob,
     city_state: req.body.city_state,
+    aboutme:req.body.aboutme
   }
 
   const existingAccount = await findAccount(newUser.email)
@@ -31,6 +32,7 @@ auth.post('/signup', async (req, res) => {
       if (newAccount.error) {
         res.status(500).send(newAccount.error)
       } else {
+        const USER = await getAccountInfo(newUser.email)
         const TOKEN = jwt.sign(
           {email: newAccountInfo.email, password: newAccountInfo.password},
           process.env.SECRET_KEY
@@ -46,7 +48,7 @@ auth.post('/signup', async (req, res) => {
             secure: true,
           })
           .status(200)
-          .json({message: 'Account creation Success', user:newAccount})
+          .json({message: 'Account creation Success', user:USER[0]})
       }
     })
   }
@@ -63,12 +65,13 @@ auth.post('/login', async (req, res) => {
       bcrypt.compare(
         password,
         EXISTING_ACCOUNT[0].password,
-        (error, result) => {
+        async (error, result) => {
           if (error) {
             res
               .status(500)
               .json({error: 'Sorry, something went wrong.' + error})
           } else if (result) {
+            const USER = await getAccountInfo(email.toLowerCase())
             const token = jwt.sign(
               {email: email.toLowerCase(), password: password},
               process.env.SECRET_KEY
@@ -89,7 +92,7 @@ auth.post('/login', async (req, res) => {
                 // sameSite:'None'
               })
               .status(200)
-              .json({message: 'Welcome Back!', user: EXISTING_ACCOUNT[0]})
+              .json({message: 'Welcome Back!', user: USER[0]})
           } else if (!result) {
             res.status(400).json({error: 'Email or password do not match.'})
           }
@@ -123,7 +126,7 @@ auth.post('/token', (req, res) => {
   const token = cookie.split('token=')[1].split(';')[0]
   jwt.verify(token, process.env.SECRET_KEY, async (error, account) => {
     if (account && !error) {
-      const user = await getAccountInfo(account.email)
+      const USER = await getAccountInfo(account.email)
       res
         .cookie('token', token, {
           origin: process.env.ORIGIN,
@@ -135,7 +138,7 @@ auth.post('/token', (req, res) => {
           expires: new Date().time + TIME,
         })
         .status(200)
-        .json({message: `Welcome back ${user[0]}`, user: user})
+        .json({message: `Welcome back ${USER[0].username}`, user: USER[0]})
     }
   })
 })

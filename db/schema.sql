@@ -12,7 +12,7 @@ CREATE TABLE users (
   dob VARCHAR(10) NOT NULL,
   city_state TEXT NOT NULL,
   profile_pic BYTEA,
-  -- birth_date DATE,
+  aboutme TEXT,
   -- locale_home POINT,
   learning_interest TEXT,
   current_skillset TEXT,
