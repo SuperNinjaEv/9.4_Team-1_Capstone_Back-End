@@ -20,13 +20,13 @@ const findAccount = async email => {
  */
 const getAccountInfo = async email => {
   const ACCOUNT = await db.any(
-    'SELECT user_id,email,name,username,dob,city_state,profile_pic,learning_interest,current_skillset FROM users WHERE email=$1',
+    'SELECT user_id, email, name, username, dob, city_state, profile_pic, learning_interest, current_skillset, aboutme FROM users WHERE email=$1',
     email
   )
-  if(ACCOUNT){
+  if (ACCOUNT) {
     return ACCOUNT
   }
-  return {error:'No Account found'}
+  return {error: 'No Account found'}
 }
 /**
  * adds a user to the database from the credentials given at the signup stage
@@ -35,7 +35,7 @@ const getAccountInfo = async email => {
  */
 const addAccount = async account => {
   const NEW_ACCOUNT = await db.one(
-    'INSERT INTO users (name, email, password, username, dob, city_state) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *',
+    'INSERT INTO users (name, email, password, username, dob, city_state, aboutme) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
     [
       account.name,
       account.email,
@@ -43,6 +43,7 @@ const addAccount = async account => {
       account.username,
       account.dob,
       account.city_state,
+      account.aboutme
     ]
   )
   if (NEW_ACCOUNT.email) {
@@ -55,5 +56,5 @@ const addAccount = async account => {
 module.exports = {
   findAccount,
   addAccount,
-  getAccountInfo
+  getAccountInfo,
 }

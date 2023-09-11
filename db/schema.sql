@@ -12,7 +12,7 @@ CREATE TABLE users (
   dob VARCHAR(10) NOT NULL,
   city_state TEXT NOT NULL,
   profile_pic BYTEA,
-  -- birth_date DATE,
+  aboutme TEXT,
   -- locale_home POINT,
   learning_interest TEXT,
   current_skillset TEXT,
@@ -43,15 +43,14 @@ CREATE TABLE hobby (
 
 
 CREATE TABLE tools (
-    tool_id SERIAL PRIMARY KEY,
-    name_tools TEXT,
-    description TEXT,
-    price INT,
-    stock_quantity INT,
-    item_condition TEXT,
-    thumbnail TEXT,
-  user_id INT NOT NULL REFERENCES users(user_id)
-  );
+  tool_id SERIAL PRIMARY KEY,
+  name_tools TEXT,
+  description TEXT,
+  price FLOAT,
+  stock_quantity INT,
+  item_condition TEXT,
+  hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
+);
 
 
 CREATE TABLE item_exchange_barter (
