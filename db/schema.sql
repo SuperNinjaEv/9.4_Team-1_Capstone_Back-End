@@ -3,6 +3,8 @@ CREATE DATABASE craftopia_database;
 
 \c craftopia_database; 
 
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
@@ -20,6 +22,7 @@ CREATE TABLE users (
   -- other user-related fields
 );
 
+DROP TABLE IF EXISTS posts;
 
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,
@@ -32,15 +35,14 @@ CREATE TABLE posts (
   user_id INT NOT NULL REFERENCES users(user_id)
 );
 
-
+DROP TABLE IF EXISTS hobby;
 
 CREATE TABLE hobby (
   hobby_id SERIAL PRIMARY KEY,
   name_hobby TEXT NOT NULL
 );
 
-
-
+DROP TABLE IF EXISTS tools;
 
 CREATE TABLE tools (
   tool_id SERIAL PRIMARY KEY,
@@ -52,6 +54,7 @@ CREATE TABLE tools (
   hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
 );
 
+DROP TABLE IF EXISTS item_exchange_barter;
 
 CREATE TABLE item_exchange_barter (
   barter_id SERIAL PRIMARY KEY,
@@ -63,6 +66,8 @@ CREATE TABLE item_exchange_barter (
 
 );
 
+DROP TABLE IF EXISTS post_media;
+
 CREATE TABLE post_media (
   file_id SERIAL PRIMARY KEY,
   file_name TEXT NOT NULL,
@@ -72,12 +77,7 @@ CREATE TABLE post_media (
   post_id INT NOT NULL REFERENCES posts(post_id)
 );
 
--- CREATE TABLE products (
---   product_id SERIAL PRIMARY KEY,
---   name VARCHAR(180) NOT NULL,
---   tags VARCHAR(100),
-
--- )
+DROP TABLE IF EXISTS tool_media;
 
 CREATE TABLE tool_media (
     file_id SERIAL PRIMARY KEY,
@@ -87,3 +87,10 @@ CREATE TABLE tool_media (
     file_url TEXT NOT NULL,
     tool_id INT NOT NULL REFERENCES tools(tool_id)
   );
+
+-- CREATE TABLE products (
+--   product_id SERIAL PRIMARY KEY,
+--   name VARCHAR(180) NOT NULL,
+--   tags VARCHAR(100),
+
+-- )
