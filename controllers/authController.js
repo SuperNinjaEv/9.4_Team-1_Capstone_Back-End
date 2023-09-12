@@ -84,17 +84,13 @@ auth.post('/login', async (req, res) => {
                 expires: persist ? new Date().time + TIME : undefined,
                 httpOnly: true,
                 secure:true,
-                domain:'cozy-bienenstitch-b0bcd4.netlify.app'
-
-                // sameSite:'None'
+                sameSite:'None'
               })
               .cookie('checkToken', true, {
                 origin: process.env.ORIGIN,
                 expires: persist ? new Date().time + TIME : undefined,
                 secure:true,
-                domain:'cozy-bienenstitch-b0bcd4.netlify.app'
-
-                // sameSite:'None'
+                sameSite:'None'
               })
               .status(200)
               .json({message: 'Welcome Back!', user: USER[0]})
