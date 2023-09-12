@@ -46,6 +46,7 @@ auth.post('/signup', async (req, res) => {
           .cookie('checkToken', true, {
             origin: process.env.ORIGIN,
             secure: true,
+
           })
           .status(200)
           .json({message: 'Account creation Success', user:USER[0]})
@@ -83,12 +84,16 @@ auth.post('/login', async (req, res) => {
                 expires: persist ? new Date().time + TIME : undefined,
                 httpOnly: true,
                 secure:true,
+                domain:'cozy-bienenstitch-b0bcd4.netlify.app'
+
                 // sameSite:'None'
               })
               .cookie('checkToken', true, {
                 origin: process.env.ORIGIN,
                 expires: persist ? new Date().time + TIME : undefined,
                 secure:true,
+                domain:'cozy-bienenstitch-b0bcd4.netlify.app'
+
                 // sameSite:'None'
               })
               .status(200)
