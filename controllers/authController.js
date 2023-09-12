@@ -82,13 +82,13 @@ auth.post('/login', async (req, res) => {
                 origin: process.env.ORIGIN,
                 expires: persist ? new Date().time + TIME : undefined,
                 httpOnly: true,
-                // secure:true,
+                secure:true,
                 // sameSite:'None'
               })
               .cookie('checkToken', true, {
                 origin: process.env.ORIGIN,
                 expires: persist ? new Date().time + TIME : undefined,
-                // secure:true,
+                secure:true,
                 // sameSite:'None'
               })
               .status(200)
@@ -110,11 +110,11 @@ auth.post('/logout', (req, res) => {
     .clearCookie('token', {
       origin: process.env.ORIGIN,
       httpOnly: true,
-    //   secure: true,
+      secure: true,
     })
     .clearCookie('checkToken', {
       origin: process.env.ORIGIN,
-    //   secure: true,
+      secure: true,
     })
     .json({message: 'logged out'})
 })
@@ -132,10 +132,12 @@ auth.post('/token', (req, res) => {
           origin: process.env.ORIGIN,
           expires: new Date().time + TIME,
           httpOnly: true,
+          secure:true
         })
         .cookie('checkToken', true, {
           origin: process.env.ORIGIN,
           expires: new Date().time + TIME,
+          secure:true
         })
         .status(200)
         .json({message: `Welcome back ${USER[0].username}`, user: USER[0]})
