@@ -33,23 +33,23 @@ auth.post('/signup', async (req, res) => {
         res.status(500).send(newAccount.error)
       } else {
         const USER = await getAccountInfo(newUser.email)
-        const TOKEN = jwt.sign(
+        const token = jwt.sign(
           {email: newAccountInfo.email, password: newAccountInfo.password},
           process.env.SECRET_KEY
         )
         res
-          .cookie('token', TOKEN, {
-            origin: process.env.ORIGIN,
-            httpOnly: true,
-            secure: true,
-          })
-          .cookie('checkToken', true, {
-            origin: process.env.ORIGIN,
-            secure: true,
+          // .cookie('token', TOKEN, {
+          //   origin: process.env.ORIGIN,
+          //   httpOnly: true,
+          //   secure: true,
+          // })
+          // .cookie('checkToken', true, {
+          //   origin: process.env.ORIGIN,
+          //   secure: true,
 
-          })
+          // })
           .status(200)
-          .json({message: 'Account creation Success', user:USER[0]})
+          .json({message: 'Account creation Success', user:USER[0], token:token})
       }
     })
   }
@@ -77,23 +77,22 @@ auth.post('/login', async (req, res) => {
               {email: email.toLowerCase(), password: password},
               process.env.SECRET_KEY
             )
-            const TIME = 60000
             res
-              .cookie('token', token, {
-                // origin: process.env.ORIGIN,
-                expires: persist ? new Date().time + TIME : undefined,
-                httpOnly: true,
-                secure:true,
-                sameSite:'none'
-              })
-              .cookie('checkToken', true, {
-                // origin: process.env.ORIGIN,
-                expires: persist ? new Date().time + TIME : undefined,
-                secure:true,
-                sameSite:'none'
-              })
+              // .cookie('token', token, {
+              //   // origin: process.env.ORIGIN,
+              //   expires: persist ? new Date().time + TIME : undefined,
+              //   httpOnly: true,
+              //   secure:true,
+              //   sameSite:'none'
+              // })
+              // .cookie('checkToken', true, {
+              //   // origin: process.env.ORIGIN,
+              //   expires: persist ? new Date().time + TIME : undefined,
+              //   secure:true,
+              //   sameSite:'none'
+              // })
               .status(200)
-              .json({message: 'Welcome Back!', user: USER[0]})
+              .json({message: 'Welcome Back!', user: USER[0], token:token})
           } else if (!result) {
             res.status(400).json({error: 'Email or password do not match.'})
           }
@@ -106,40 +105,39 @@ auth.post('/login', async (req, res) => {
       .json({error: 'Server error while signing in, try again later.'})
   }
 })
-auth.post('/logout', (req, res) => {
-  res
-    .clearCookie('token', {
-      origin: process.env.ORIGIN,
-      httpOnly: true,
-      secure: true,
-    })
-    .clearCookie('checkToken', {
-      origin: process.env.ORIGIN,
-      secure: true,
-    })
-    .json({message: 'logged out'})
-})
+// auth.post('/logout', (req, res) => {
+//   res
+//     .clearCookie('token', {
+//       origin: process.env.ORIGIN,
+//       httpOnly: true,
+//       secure: true,
+//     })
+//     .clearCookie('checkToken', {
+//       origin: process.env.ORIGIN,
+//       secure: true,
+//     })
+//     .json({message: 'logged out'})
+// })
 
 auth.post('/token', (req, res) => {
-  const {cookie} = req.headers
-  const TIME = 60000
+  const {cookie} = req.body
   if (cookie === undefined) return
-  const token = cookie.split('token=')[1].split(';')[0]
+  const token = cookie
   jwt.verify(token, process.env.SECRET_KEY, async (error, account) => {
     if (account && !error) {
       const USER = await getAccountInfo(account.email)
       res
-        .cookie('token', token, {
-          origin: process.env.ORIGIN,
-          expires: new Date().time + TIME,
-          httpOnly: true,
-          secure:true
-        })
-        .cookie('checkToken', true, {
-          origin: process.env.ORIGIN,
-          expires: new Date().time + TIME,
-          secure:true
-        })
+        // .cookie('token', token, {
+        //   origin: process.env.ORIGIN,
+        //   expires: new Date().time + TIME,
+        //   httpOnly: true,
+        //   secure:true
+        // })
+        // .cookie('checkToken', true, {
+        //   origin: process.env.ORIGIN,
+        //   expires: new Date().time + TIME,
+        //   secure:true
+        // })
         .status(200)
         .json({message: `Welcome back ${USER[0].username}`, user: USER[0]})
     }
