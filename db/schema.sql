@@ -1,16 +1,14 @@
 DROP DATABASE IF EXISTS craftopia_database;
+
 CREATE DATABASE craftopia_database; 
 
 \c craftopia_database; 
-
 
 CREATE TABLE user_cred (
   userid SERIAL PRIMARY KEY,
   email VARCHAR(100) NOT NULL,
   password text not null
 );
-
-
 
 CREATE TABLE user_profile (
   profile_id SERIAL PRIMARY KEY,
@@ -22,7 +20,6 @@ CREATE TABLE user_profile (
   current_skillset TEXT,
   userid INT NOT NULL REFERENCES user_cred(userid)
 );
-
 
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,

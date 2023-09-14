@@ -8,7 +8,6 @@ const { findAccount } = require("./auth.js");
  **/
 const getAllPostsFromUser = async () => await db.any("SELECT * FROM posts");
 
-
 //function will get a single post from a single user given the email to find the userid and hence ensuring user authenticated before the post is brought up retrieval
 /**
  * gets a single post from a user based on email and post identification
