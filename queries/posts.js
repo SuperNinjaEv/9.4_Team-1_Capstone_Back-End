@@ -10,7 +10,6 @@ const getAllPostsFromUser = async (id) =>{
   if(!allPosts.error){
     return allPosts
   }else return []
-
 } 
 
 //function will get a single post from a single user given the email to find the userid and hence ensuring user authenticated before the post is brought up retrieval
