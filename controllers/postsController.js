@@ -26,6 +26,8 @@ const upload = multer({
     },
   }),
 });
+console.log(process.env.BUCKET_NAME);
+
 
 //all posts from specific user
 posts.get('/:id', async (req, res) => {
@@ -89,28 +91,47 @@ posts.delete('/:id', async (req, res) => {
 
 posts.post('/', upload.array('files', 10), async (req, res) => {
   
-  const fileKeys = Object.keys(req.files)
-  const files = []
+  // const fileKeys = Object.keys(req.files)
+  // const files = []
 
-  fileKeys.forEach(key => {
-    files.push(req.files[key])
-  })
+  // fileKeys.forEach(key => {
+  //   files.push(req.files[key])
+  // })
   try {
-    const post = req.body
-    const createdPost = await createPosts(post)
+    const post = req.body;
+    const files = req.files; //added
+    const createdPost = await createPosts(post);
     if (!createdPost.error) {
-      files.forEach(async(file, i) => {
-        console.log(file)
-        if(i===0){
-          uploadImageS3(file,`${createdPost.post_id}_thumbnail`)
-          await addThumbnail(`${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,createdPost.post_id )
-        }else{
-          uploadImageS3(file,`${createdPost.post_id}_image${i}`)
-          uploadImageDb(file,`${createdPost.post_id}_image${i}`, createdPost.post_id)
+      // files.forEach(async(file, i) => {
+      //   console.log(file)
+      //   if(i===0){
+      //     uploadImageS3(file,`${createdPost.post_id}_thumbnail`)
+      //     await addThumbnail(`${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,createdPost.post_id )
+      //   }else{
+      //     uploadImageS3(file,`${createdPost.post_id}_image${i}`)
+      //     uploadImageDb(file,`${createdPost.post_id}_image${i}`, createdPost.post_id)
+      //   }
+      // }) 
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        console.log(file);
+        if (i === 0) {
+          await uploadImageS3(file, `${createdPost.post_id}_thumbnail`);
+          await addThumbnail(
+            `${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,
+            createdPost.post_id
+          );
+        } else {
+          await uploadImageS3(file, `${createdPost.post_id}_image${i}`);
+          await uploadImageDb(file, `${createdPost.post_id}_image${i}`, createdPost.post_id);
         }
-      }) 
+      }
+      res.status(200).json({ message: 'Post Succesful', createdPost: createdPost });
     }
-    res.status(200).json({message: 'Post Successful', createdPost: createdPost})
+    else {
+      throw new Error('Error creating post');
+    }
+    //res.status(200).json({message: 'Post Successful', createdPost: createdPost})
   } catch (error) {
     console.log(error)
     console.log('Incoming request body:', req.body)
@@ -138,7 +159,8 @@ const uploadImageS3 = async(file,imageName,post_id)=>{
     
     return results// For unit tests.
   } catch (err) {
-    console.log('Error:', err)
+    console.log('Error:', err);
+    throw err;
   }
 }
 const uploadImageDb = async(file, imageName, post_id)=>{
