@@ -20,12 +20,13 @@
   },
   "homepage": "https://github.com/SuperNinjaEv/9.4_Team-1_Capstone_Back-End#readme",
   "dependencies": {
-    "aws-sdk": "^2.1458.0",
+    "@aws-sdk/client-s3": "^3.405.0",
     "bcrypt": "^5.1.1",
     "connect-busboy": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.1",
     "multer": "^1.4.5-lts.1",
     "pg-promise": "^11.5.3"
