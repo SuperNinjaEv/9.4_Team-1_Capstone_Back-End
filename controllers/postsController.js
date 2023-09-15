@@ -1,6 +1,10 @@
 
 const express = require("express");
 const posts = express.Router();
+const multer = require('multer');
+const AWS = require('aws-sdk');
+const multerS3 = require('multer-s3');
+
 const {
     getAllPostsFromUser,
     // getAllPosts,
@@ -9,6 +13,12 @@ const {
     deletePost,
     createPosts,
 } = require("../queries/posts");
+
+AWS.config.update({
+  
+})
+
+
 
 //possible scrap code below
 // //all posts from specific user
@@ -90,7 +100,6 @@ posts.post("/", async (req, res) => {
     console.log("Incoming request body:", req.body);
     // res.status(400).json({ error: "Incorrect post body" });
     res.status(400).json({ error: "Incorrect post body" });
-
 }
 });
 
