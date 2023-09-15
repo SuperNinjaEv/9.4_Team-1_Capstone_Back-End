@@ -1,6 +1,8 @@
-const express = require('express')
-const posts = express.Router()
-const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3')
+const express = require('express');
+const posts = express.Router();
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
 const {
   getAllPostsFromUser,
   getAllPosts,
@@ -10,8 +12,20 @@ const {
   createPosts,
   postMedia,
   addThumbnail,
-} = require('../queries/posts')
-const s3 = new S3Client()
+} = require('../queries/posts');
+const s3 = new S3Client();
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.BUCKET_NAME,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString() + '-' + file.originalname);
+    },
+  }),
+});
 
 //all posts from specific user
 posts.get('/:id', async (req, res) => {
@@ -73,7 +87,8 @@ posts.delete('/:id', async (req, res) => {
   }
 })
 
-posts.post('/', async (req, res) => {
+posts.post('/', upload.array('files', 10), async (req, res) => {
+  
   const fileKeys = Object.keys(req.files)
   const files = []
 
@@ -102,7 +117,6 @@ posts.post('/', async (req, res) => {
     res.status(400).json({error: 'Incorrect post body'})
   }
 })
-
 
 const uploadImageS3 = async(file,imageName,post_id)=>{
   const params = {
