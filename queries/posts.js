@@ -5,8 +5,8 @@ const db = require('../db/dbConfig.js')
  * gets all posts from a user
  * @returns {object} all posts via json format
  **/
-const getAllPosts = async id => {
-  const allPosts = await db.any('SELECT * FROM posts WHERE user_id=$1', id)
+const getAllPosts = async _ => {
+  const allPosts = await db.any('SELECT * FROM posts RETURNING *')
   if (!allPosts.error) {
     return allPosts
   } else return []
