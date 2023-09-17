@@ -6,7 +6,7 @@ const db = require('../db/dbConfig.js')
  * @returns {object} all posts via json format
  **/
 const getAllPosts = async _ => {
-  const allPosts = await db.any('SELECT * FROM posts RETURNING *')
+  const allPosts = await db.any('SELECT * FROM posts')
   if (!allPosts.error) {
     return allPosts
   } else return []
