@@ -11,13 +11,11 @@ CREATE TABLE users (
   username VARCHAR(40) NOT NULL UNIQUE,
   dob VARCHAR(10) NOT NULL,
   city_state TEXT NOT NULL,
-  profile_pic BYTEA,
+  profile_pic TEXT,
   aboutme TEXT,
-  -- locale_home POINT,
-  learning_interest TEXT,
-  current_skillset TEXT,
+  learning_interest TEXT NOT NULL DEFAULT '',
+  current_skillset TEXT NOT NULL DEFAULT '',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  -- other user-related fields
 );
 
 
@@ -44,7 +42,7 @@ CREATE TABLE tools (
   price FLOAT,
   stock_quantity INT,
   item_condition TEXT,
-  hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
+  user_id INT NOT NULL REFERENCES users(user_id)
 );
 
 CREATE TABLE item_exchange_barter (
