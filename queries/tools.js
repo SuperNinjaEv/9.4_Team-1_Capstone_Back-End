@@ -1,13 +1,22 @@
-const db = require("../db/dbConfig.js");
-// const { findAccount } = require("./auth.js");
+const db = require('../db/dbConfig.js')
 
+const getAllTools = async () => {
+  const userTools = await db.any('SELECT * FROM tools')
+  if (userTools.error) {
+    return userTools.error
+  } else return userTools
+}
 //function will get all tool from a single user given the email to find the userid and hence ensuring user authenticated before tools are brought up for CRUD actions
 /**
  * gets all tools from a user
  * @returns {object} all tools via json format
  **/
-const getAlltoolsFromUser = async () => await db.any("SELECT * FROM tools");
-
+const getAllToolsFromUser = async id => {
+  const userTools = await db.any('SELECT * FROM tools WHERE user_id=$1', id)
+  if (userTools.error) {
+    return userTools.error
+  } else return userTools
+}
 
 //function will get a single tool from a single user given the email to find the userid and hence ensuring user authenticated before the tool is brought up retrieval
 /**
@@ -16,9 +25,8 @@ const getAlltoolsFromUser = async () => await db.any("SELECT * FROM tools");
  * @returns {object} a single tool via json format
  **/
 
-const getOnetool = async (tool_id) =>
-  await db.one("SELECT * FROM tools WHERE tool_id=$1",[tool_id]);
-
+const getOneTool = async tool_id =>
+  await db.one('SELECT * FROM tools WHERE tool_id=$1', [tool_id])
 
 //function will update a tool from a single user given the email to find the userid and hence ensuring user authenticated before tools are brought up for updating action
 /**
@@ -27,14 +35,21 @@ const getOnetool = async (tool_id) =>
  * @param {object} tools - the tool's data to be edited
  * @returns {object} a single tool via json format that has been edited
  */
-const updateOnetool = async (tool_id,tools) => {
-  const { name_tools, description, price, stock_quantity, item_condition} = tools;
+const updateOneTool = async tools => {
+  const {
+    name_tools,
+    description,
+    price,
+    stock_quantity,
+    item_condition,
+    tool_id,
+  } = tools
 
   return await db.one(
-    "UPDATE tools SET name_tools=$1, description=$2, price=$3, stock_quantity=$4, item_condition=$5 WHERE tool_id=$6 RETURNING *",
+    'UPDATE tools SET name_tools=$1, description=$2, price=$3, stock_quantity=$4, item_condition=$5 WHERE tool_id=$6 RETURNING *',
     [name_tools, description, price, stock_quantity, item_condition, tool_id]
-  );
-};
+  )
+}
 
 //function will get a tool from a single user given the email to find the userid and hence ensuring user authenticated before tools are brought up for deletion
 /**
@@ -42,9 +57,8 @@ const updateOnetool = async (tool_id,tools) => {
  * @param {number} tool_id - a specific tool's identification number
  **/
 
-const deletetool = async (tool_id) =>
-  await db.one("DELETE FROM tools WHERE tool_id=$1 RETURNING *", tool_id);
-  
+const deleteTool = async tool_id =>
+  await db.one('DELETE FROM tools WHERE tool_id=$1 RETURNING *', tool_id)
 
 /**
  * creates a single tool from a user based on email which will determine the userid and thus the user who is making the tool
@@ -52,21 +66,21 @@ const deletetool = async (tool_id) =>
  * @param {object} tools - the tool's data to be edited
  * @returns {object} a single tool via json format
  */
-const createtools = async (tool) => {
+const createTools = async tool => {
   const newtool = await db.one(
-    "INSERT INTO tools (name_tools, description, price, stock_quantity, item_condition, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+    'INSERT INTO tools (name_tools, description, price, stock_quantity, item_condition, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
     [
       tool.name_tools,
       tool.description,
       tool.price,
       tool.stock_quantity,
       tool.item_condition,
-      tool.user_id
+      tool.user_id,
     ]
-  );
+  )
 
-  return newtool;
-};
+  return newtool
+}
 
 // CREATE TABLE tool_instrument (
 //     id SERIAL PRIMARY KEY,
@@ -78,37 +92,36 @@ const createtools = async (tool) => {
 //     hobby_id INT NOT NULL REFERENCES hobby(hobby_id)
 //   );
 
-
 const addToolMedia = async file => {
   const fileUploaded = await db.one(
     'INSERT INTO tool_media (file_name, file_size, file_url, tool_id) VALUES ($1, $2, $3, $4) RETURNING *',
     [file.file_name, file.file_size, file.file_url, file.tool_id]
   )
-  if(!fileUploaded.error){
-      return fileUploaded
-  }else{
+  if (!fileUploaded.error) {
+    return fileUploaded
+  } else {
     return fileUploaded.error
   }
 }
 
-
-
-const addThumbnailTools =async(thumbnail, tool_id)=>{
+const addThumbnailTools = async (thumbnail, tool_id) => {
   const updatePost = await db.one(
-    "UPDATE tools SET thumbnail=$1 WHERE tool_id=$2 returning *", [thumbnail, tool_id]
+    'UPDATE tools SET thumbnail=$1 WHERE tool_id=$2 returning *',
+    [thumbnail, tool_id]
   )
-  if(!updatePost.error){
-    return updatePost 
+  if (!updatePost.error) {
+    return updatePost
   }
   return updatePost.error
 }
 
 module.exports = {
-  getAlltoolsFromUser,
-  getOnetool,
-  updateOnetool,
-  deletetool,
-  createtools,
+  getAllTools,
+  getAllToolsFromUser,
+  getOneTool,
+  updateOneTool,
+  deleteTool,
+  createTools,
   addToolMedia,
   addThumbnailTools,
-};
+}

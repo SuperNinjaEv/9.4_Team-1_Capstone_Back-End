@@ -1,16 +1,28 @@
 const db = require('../db/dbConfig.js')
 
+//function will get all post
+/**
+ * gets all posts from a user
+ * @returns {object} all posts via json format
+ **/
+const getAllPosts = async _ => {
+  const allPosts = await db.any('SELECT * FROM posts')
+  if (!allPosts.error) {
+    return allPosts
+  } else return []
+}
+
 //function will get all post from a single user given the email to find the userid and hence ensuring user authenticated before posts are brought up for CRUD actions
 /**
  * gets all posts from a user
  * @returns {object} all posts via json format
  **/
-const getAllPostsFromUser = async (id) =>{
-  const allPosts = await db.any('SELECT * FROM posts WHERE user_id=$1',id)
-  if(!allPosts.error){
+const getAllPostsFromUser = async id => {
+  const allPosts = await db.any('SELECT * FROM posts WHERE user_id=$1', id)
+  if (!allPosts.error) {
     return allPosts
-  }else return []
-} 
+  } else return []
+}
 
 //function will get a single post from a single user given the email to find the userid and hence ensuring user authenticated before the post is brought up retrieval
 /**
@@ -30,11 +42,11 @@ const getOnePost = async post_id => {
  * @returns {object} a single post via json format that has been edited
  */
 const updateOnePost = async (post_id, posts) => {
-  const {title, tags, body} = posts
+  const {title, category, body} = posts
 
   return await db.one(
     'UPDATE posts SET title=$1, tags=$2, body=$3, edited_at=$4 WHERE post_id=$5 RETURNING *',
-    [title, tags, body, NOW(), post_id]
+    [title, category, body, NOW(), post_id]
   )
 }
 
@@ -51,7 +63,7 @@ const deletePost = async post_id => {
 const createPosts = async posts => {
   const insertedPosts = await db.one(
     'INSERT INTO posts (title, tags, body, user_id) VALUES($1, $2, $3, $4) RETURNING *',
-    [posts.title, posts.tags, posts.body, posts.user_id]
+    [posts.title, posts.category, posts.body, posts.user_id]
   )
 
   return insertedPosts
@@ -81,6 +93,7 @@ const addThumbnail = async (thumbnail, post_id) => {
 }
 
 module.exports = {
+  getAllPosts,
   getAllPostsFromUser,
   getOnePost,
   updateOnePost,
