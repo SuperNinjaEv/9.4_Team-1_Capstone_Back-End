@@ -30,18 +30,13 @@ CREATE TABLE posts (
   user_id INT NOT NULL REFERENCES users(user_id)
 );
 
-CREATE TABLE hobby (
-  hobby_id SERIAL PRIMARY KEY,
-  name_hobby TEXT NOT NULL
-);
-
 CREATE TABLE tools (
   tool_id SERIAL PRIMARY KEY,
-  name_tools TEXT,
+  name TEXT,
   description TEXT,
   price FLOAT,
-  stock_quantity INT,
-  item_condition TEXT,
+  stock INT,
+  condition TEXT,
   user_id INT NOT NULL REFERENCES users(user_id)
 );
 
