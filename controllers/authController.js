@@ -1,7 +1,42 @@
 const auth = require('express').Router()
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const {findAccount, addAccount, getAccountInfo} = require('../queries/auth')
+const {
+  findAccount,
+  addAccount,
+  getAccountInfo,
+  updateAccount,
+} = require('../queries/auth')
+const {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} = require('@aws-sdk/client-s3')
+const s3 = new S3Client()
+
+const uploadImageS3 = async (file, imageName) => {
+  const params = {
+    Bucket: process.env.BUCKET_NAME,
+    Key: imageName,
+    Body: file.data,
+  }
+
+  try {
+    const results = await s3.send(new PutObjectCommand(params))
+    console.log(
+      'Successfully created ' +
+        params.Key +
+        ' and uploaded it to ' +
+        params.Bucket +
+        '/' +
+        params.Key
+    )
+
+    return results // For unit tests.
+  } catch (err) {
+    console.log('Error:', err)
+  }
+}
 
 auth.post('/signup', async (req, res) => {
   const newUser = {
@@ -11,7 +46,7 @@ auth.post('/signup', async (req, res) => {
     username: req.body.username,
     dob: req.body.dob,
     city_state: req.body.city_state,
-    aboutme:req.body.aboutme
+    aboutme: req.body.aboutme,
   }
 
   const existingAccount = await findAccount(newUser.email)
@@ -37,19 +72,11 @@ auth.post('/signup', async (req, res) => {
           {email: newAccountInfo.email, password: newAccountInfo.password},
           process.env.SECRET_KEY
         )
-        res
-          // .cookie('token', TOKEN, {
-          //   origin: process.env.ORIGIN,
-          //   httpOnly: true,
-          //   secure: true,
-          // })
-          // .cookie('checkToken', true, {
-          //   origin: process.env.ORIGIN,
-          //   secure: true,
-
-          // })
-          .status(200)
-          .json({message: 'Account creation Success', user:USER[0], token:token})
+        res.status(200).json({
+          message: 'Account creation Success',
+          user: USER[0],
+          token: token,
+        })
       }
     })
   }
@@ -59,7 +86,7 @@ auth.post('/login', async (req, res) => {
   const {email, password, persist} = req.body
   try {
     const EXISTING_ACCOUNT = await findAccount(email.toLowerCase())
-    
+
     if (EXISTING_ACCOUNT.length === 0) {
       res.status(405).json({error: ' Email not found, register now'})
     } else {
@@ -78,21 +105,8 @@ auth.post('/login', async (req, res) => {
               process.env.SECRET_KEY
             )
             res
-              // .cookie('token', token, {
-              //   // origin: process.env.ORIGIN,
-              //   expires: persist ? new Date().time + TIME : undefined,
-              //   httpOnly: true,
-              //   secure:true,
-              //   sameSite:'none'
-              // })
-              // .cookie('checkToken', true, {
-              //   // origin: process.env.ORIGIN,
-              //   expires: persist ? new Date().time + TIME : undefined,
-              //   secure:true,
-              //   sameSite:'none'
-              // })
               .status(200)
-              .json({message: 'Welcome Back!', user: USER[0], token:token})
+              .json({message: 'Welcome Back!', user: USER[0], token: token})
           } else if (!result) {
             res.status(400).json({error: 'Email or password do not match.'})
           }
@@ -105,19 +119,6 @@ auth.post('/login', async (req, res) => {
       .json({error: 'Server error while signing in, try again later.'})
   }
 })
-// auth.post('/logout', (req, res) => {
-//   res
-//     .clearCookie('token', {
-//       origin: process.env.ORIGIN,
-//       httpOnly: true,
-//       secure: true,
-//     })
-//     .clearCookie('checkToken', {
-//       origin: process.env.ORIGIN,
-//       secure: true,
-//     })
-//     .json({message: 'logged out'})
-// })
 
 auth.post('/token', (req, res) => {
   const {cookie} = req.body
@@ -127,22 +128,36 @@ auth.post('/token', (req, res) => {
     if (account && !error) {
       const USER = await getAccountInfo(account.email)
       res
-        // .cookie('token', token, {
-        //   origin: process.env.ORIGIN,
-        //   expires: new Date().time + TIME,
-        //   httpOnly: true,
-        //   secure:true
-        // })
-        // .cookie('checkToken', true, {
-        //   origin: process.env.ORIGIN,
-        //   expires: new Date().time + TIME,
-        //   secure:true
-        // })
         .status(200)
         .json({message: `Welcome back ${USER[0].username}`, user: USER[0]})
     }
   })
 })
 
-auth.put('/:id', (req, res) => {})
+auth.put('/:id', async (req, res) => {
+  const profilePic = req.files
+  if (profilePic !== null) {
+    await s3.send(
+      new DeleteObjectCommand({
+        Bucket: process.env.BUCKET_NAME,
+        Key: `${req.body.username}-profile-pic`,
+      })
+    )
+    uploadImageS3(profilePic['profile-pic'], `${req.body.username}-profile-pic`)
+  }
+  const updatedUser = {
+    user_id: req.body.user_id,
+    profile_pic:
+      profilePic === null
+        ? req.body.profile_pic
+        : `${process.env.CLOUDFRONT_URI}${req.body.username}-profile-pic`,
+    learning_interest: req.body.learning_interest,
+    current_skillset: req.body.current_skillset,
+    city_state: req.body.city_state,
+    aboutme: req.body.aboutme,
+  }
+  const updatedAccountResults = await updateAccount(updatedUser)
+  res.status(200).json({updatedAccount: updatedAccountResults})
+})
+
 module.exports = auth

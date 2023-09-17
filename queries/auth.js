@@ -43,7 +43,7 @@ const addAccount = async account => {
       account.username,
       account.dob,
       account.city_state,
-      account.aboutme
+      account.aboutme,
     ]
   )
   if (NEW_ACCOUNT.email) {
@@ -53,8 +53,27 @@ const addAccount = async account => {
   }
 }
 
+const updateAccount = async update => {
+  const updatedUser = await db.one(
+    'UPDATE users SET profile_pic=$1, learning_interest=$2, current_skillset=$3, aboutme=$4, city_state=$5 WHERE user_id=$6 RETURNING *',
+    [
+      update.profile_pic,
+      update.learning_interest,
+      update.current_skillset,
+      update.aboutme,
+      update.city_state,
+      update.user_id,
+    ]
+  )
+  if (!updatedUser.error) {
+    return updatedUser
+  }
+  return updatedUser.error
+}
+
 module.exports = {
   findAccount,
   addAccount,
   getAccountInfo,
+  updateAccount,
 }
