@@ -1,7 +1,8 @@
 DROP DATABASE IF EXISTS craftopia_database;
-CREATE DATABASE craftopia_database; 
 
-\c craftopia_database; 
+CREATE DATABASE craftopia_database;
+
+\ c craftopia_database;
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
@@ -17,7 +18,6 @@ CREATE TABLE users (
   current_skillset TEXT NOT NULL DEFAULT '',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,
@@ -35,8 +35,10 @@ CREATE TABLE tools (
   name TEXT,
   description TEXT,
   price FLOAT,
+  thumbnail TEXT,
   stock INT,
   condition TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_id INT NOT NULL REFERENCES users(user_id)
 );
 
@@ -47,7 +49,6 @@ CREATE TABLE item_exchange_barter (
   location POINT,
   stock_quantity INT,
   tool_id INT NOT NULL REFERENCES tools(tool_id)
-
 );
 
 CREATE TABLE post_media (
@@ -59,19 +60,17 @@ CREATE TABLE post_media (
   post_id INT NOT NULL REFERENCES posts(post_id)
 );
 
-
 CREATE TABLE tool_media (
-    file_id SERIAL PRIMARY KEY,
-    file_name TEXT NOT NULL,
-    file_size INT,
-    file_type TEXT,
-    file_url TEXT NOT NULL,
-    tool_id INT NOT NULL REFERENCES tools(tool_id)
-  );
+  file_id SERIAL PRIMARY KEY,
+  file_name TEXT NOT NULL,
+  file_size INT,
+  file_type TEXT,
+  file_url TEXT NOT NULL,
+  tool_id INT NOT NULL REFERENCES tools(tool_id)
+);
 
 -- CREATE TABLE products (
 --   product_id SERIAL PRIMARY KEY,
 --   name VARCHAR(180) NOT NULL,
 --   tags VARCHAR(100),
-
 -- )

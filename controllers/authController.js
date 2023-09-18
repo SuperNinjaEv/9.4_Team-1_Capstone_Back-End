@@ -133,6 +133,18 @@ auth.post('/token', (req, res) => {
     }
   })
 })
+auth.post('/logout', (req, res) => {
+  res
+    .clearCookie('token', {
+      // origin: process.env.ORIGIN,
+      // secure: true,
+    })
+    // .clearCookie('checkToken', {
+    //   origin: process.env.ORIGIN,
+    //   secure: true,
+    // })
+    .json({message: 'logged out'})
+})
 
 auth.put('/:id', async (req, res) => {
   const profilePic = req.files
