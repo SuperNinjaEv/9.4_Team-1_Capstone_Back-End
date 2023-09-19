@@ -91,16 +91,16 @@ posts.post('/', async (req, res) => {
       files.forEach(async (file, i) => { //make conditional for file input 
         console.log(file)
         if (i === 0) {
-          uploadImageS3(file, `${createdPost.post_id}_thumbnail`)
+          uploadImageS3(file, `post_${createdPost.post_id}_thumbnail`)
           await addThumbnail(
-            `${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,
+            `${process.env.CLOUDFRONT_URI}/post_${createdPost.post_id}_thumbnail${i}`,
             createdPost.post_id
           )
         } else {
-          uploadImageS3(file, `${createdPost.post_id}_image${i}`)
+          uploadImageS3(file, `post_${createdPost.post_id}_image${i}`)
           uploadImageDb(
             file,
-            `${createdPost.post_id}_image${i}`,
+            `post_${createdPost.post_id}_image${i}`,
             createdPost.post_id
           )
         }
