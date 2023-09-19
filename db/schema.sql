@@ -27,7 +27,7 @@ CREATE TABLE posts (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   edited_at TIMESTAMP NULL DEFAULT NULL,
   thumbnail TEXT,
-  user_id INT NOT NULL REFERENCES users(user_id)
+  user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE tools (
@@ -39,7 +39,7 @@ CREATE TABLE tools (
   stock INT,
   condition TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  user_id INT NOT NULL REFERENCES users(user_id)
+  user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE item_exchange_barter (
@@ -48,7 +48,7 @@ CREATE TABLE item_exchange_barter (
   date_meeting DATE,
   location POINT,
   stock_quantity INT,
-  tool_id INT NOT NULL REFERENCES tools(tool_id)
+  tool_id INT NOT NULL REFERENCES tools(tool_id) ON DELETE CASCADE
 );
 
 CREATE TABLE post_media (
@@ -57,7 +57,7 @@ CREATE TABLE post_media (
   file_size INT,
   file_type TEXT,
   file_url TEXT NOT NULL,
-  post_id INT NOT NULL REFERENCES posts(post_id)
+  post_id INT NOT NULL REFERENCES posts(post_id) ON DELETE CASCADE
 );
 
 CREATE TABLE tool_media (
@@ -66,7 +66,7 @@ CREATE TABLE tool_media (
   file_size INT,
   file_type TEXT,
   file_url TEXT NOT NULL,
-  tool_id INT NOT NULL REFERENCES tools(tool_id)
+  tool_id INT NOT NULL REFERENCES tools(tool_id) ON DELETE CASCADE
 );
 
 -- CREATE TABLE products (
