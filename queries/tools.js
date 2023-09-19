@@ -37,17 +37,17 @@ const getOneTool = async tool_id =>
  */
 const updateOneTool = async tools => {
   const {
-    name_tools,
+    name,
     description,
     price,
-    stock_quantity,
-    item_condition,
+    stock,
+    condition,
     tool_id,
   } = tools
 
   return await db.one(
-    'UPDATE tools SET name_tools=$1, description=$2, price=$3, stock_quantity=$4, item_condition=$5 WHERE tool_id=$6 RETURNING *',
-    [name_tools, description, price, stock_quantity, item_condition, tool_id]
+    'UPDATE tools SET name=$1, description=$2, price=$3, stock=$4, item=$5 WHERE tool_id=$6 RETURNING *',
+    [name, description, price, stock, condition, tool_id]
   )
 }
 
@@ -68,7 +68,7 @@ const deleteTool = async tool_id =>
  */
 const createTools = async tool => {
   const newtool = await db.one(
-    'INSERT INTO tools (name_tools, description, price, stock_quantity, item_condition, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+    'INSERT INTO tools (name, description, price, stock, condition, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
     [
       tool.name_tools,
       tool.description,
