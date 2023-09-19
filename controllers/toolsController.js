@@ -1,6 +1,10 @@
-const express = require('express')
-const tools = express.Router()
-const {S3Client, PutObjectCommand} = require('@aws-sdk/client-s3')
+const express = require('express');
+const tools = express.Router();
+const {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} = require('@aws-sdk/client-s3');
 
 const {
   getAllToolsFromUser,
@@ -11,8 +15,9 @@ const {
   createTools,
   addThumbnailTools,
   addToolMedia,
-} = require('../queries/tools')
-const s3 = new S3Client()
+  getToolMedia,
+} = require('../queries/tools');
+const s3 = new S3Client();
 
 //possible scrap code below
 // //all tools from specific user
@@ -29,115 +34,135 @@ const s3 = new S3Client()
 
 tools.get('/', async (req, res) => {
   try {
-    const tools = await getAllTools()
-    return res.json(tools)
+    const tools = await getAllTools();
+    return res.json(tools);
   } catch (error) {
-    console.log(error)
-    res.status(400).json({error: 'Something went terribly wrong!'})
+    console.log(error);
+    res.status(400).json({error: 'Something went terribly wrong!'});
   }
-})
+});
 
 // Get all tools from a specific user
 
 tools.get('/:id', async (req, res) => {
-  const {id} = req.params
+  const {id} = req.params;
   try {
-    const tools = await getAllToolsFromUser(id)
-    return res.json(tools)
+    const tools = await getAllToolsFromUser(id);
+    return res.json(tools);
   } catch (error) {
-    console.log(error)
-    res.status(400).json({error: 'Something went terribly wrong!'})
+    console.log(error);
+    res.status(400).json({error: 'Something went terribly wrong!'});
   }
-})
+});
 
 // Get a single tool from a specific user
 
 tools.get('/:tool_id', async (req, res) => {
   try {
-    const {tool_id} = req.params
-    const tool = await getOneTool(tool_id)
-    return res.json(tool)
+    const {tool_id} = req.params;
+    const tool = await getOneTool(tool_id);
+    return res.json(tool);
   } catch (error) {
-    console.log(error)
-    res.status(404).json({error: 'That tool log does not exist!'})
+    console.log(error);
+    res.status(404).json({error: 'That tool log does not exist!'});
   }
-})
+});
 
 // Edits/Updates a single tool from a specific user
 
 tools.put('/:tool_id', async (req, res) => {
   try {
-    const {tool_id} = req.params
-    const tool = req.body
+    const {tool_id} = req.params;
+    const tool = req.body;
 
-    const updatedtool = await updateOneTool(tool_id, tool)
-    return res.json(updatedtool)
+    const updatedtool = await updateOneTool(tool_id, tool);
+    return res.json(updatedtool);
   } catch (error) {
-    console.log(error)
-    res.status(400).json({error: 'Cannot update tool log'})
+    console.log(error);
+    res.status(400).json({error: 'Cannot update tool log'});
   }
-})
+});
 
 // Deletes a tool from a specific user
 
 tools.delete('/:tool_id', async (req, res) => {
+  const {tool_id} = req.params;
+  const media = await getToolMedia(tool_id);
   try {
-    const {tool_id} = req.params
-    const deletedtool = await deleteTool(tool_id)
-    return res.json(deletedtool)
+    const deletedtool = await deleteTool(tool_id);
+    if (!media.error) {
+      media.forEach(async img => {
+        await s3.send(
+          new DeleteObjectCommand({
+            Bucket: process.env.BUCKET_NAME,
+            Key: img.file_name,
+          })
+        );
+      });
+    }
+    res.status(200).json(deletedtool);
   } catch (error) {
-    console.log(error)
-    res.status(400).json({error: 'Catastrophe! Something went terribly wrong!'})
+    console.log(error);
+    res
+      .status(400)
+      .json({error: 'Catastrophe! Something went terribly wrong!'});
   }
-})
+});
 
 // Creates a tool for a specific user
 
 tools.post('/', async (req, res) => {
-  const fileKeys = Object.keys(req.files)
-  const files = []
+  const fileKeys = Object.keys(req.files);
+  const files = [];
   fileKeys.forEach(key => {
-    files.push(req.files[key])
-  })
+    files.push(req.files[key]);
+  });
 
   try {
-    const tool = req.body
-    const createdTool = await createTools(tool)
+    const tool = req.body;
+    const createdTool = await createTools(tool);
     if (!createdTool.error) {
       files.forEach(async (file, i) => {
         if (i === 0) {
-          uploadImageS3(file, `tool_${createdTool.tool_id}_thumbnail`)
+          uploadImageS3(file, `tool_${createdTool.tool_id}_thumbnail`);
           await addThumbnailTools(
-            `${process.env.CLOUDFRONT_URI}/tool_${createdTool.tool_id}_thumbnail`,
+            `${process.env.CLOUDFRONT_URI}tool_${createdTool.tool_id}_thumbnail`,
             createdTool.tool_id
-          )
+          );
+          uploadImageDb(
+            file,
+            `tool_${createdTool.tool_id}_thumbnail`,
+            createdTool.tool_id
+          );
         } else {
-          uploadImageS3(file, `tool_${createdTool.tool_id}_img${i}`)
+          uploadImageS3(file, `tool_${createdTool.tool_id}_img${i}`);
           uploadImageDb(
             file,
             `tool_${createdTool.tool_id}_img${i}`,
             createdTool.tool_id
-          )
+          );
         }
-      })
+      });
     }
-    res.status(200).json({message: 'Post Successful', createdTool: createdTool})
+    res
+      .status(200)
+      .json({message: 'Post Successful', createdTool: createdTool});
   } catch (error) {
-    console.log(error)
-    console.log('Incoming request body:', req.body)
-    res.status(400).json({error: 'Incorrect post body'})
+    console.log(error);
+    console.log('Incoming request body:', req.body);
+    res.status(400).json({error: 'Incorrect post body'});
   }
-})
+});
 
 const uploadImageS3 = async (file, imageName) => {
   const params = {
     Bucket: process.env.BUCKET_NAME,
     Key: imageName,
     Body: file.data,
-  }
+  };
 
   try {
-    const results = await s3.send(new PutObjectCommand(params))
+    const results = await s3.send(new PutObjectCommand(params));
     console.log(
       'Successfully created ' +
         params.Key +
@@ -145,13 +170,13 @@ const uploadImageS3 = async (file, imageName) => {
         params.Bucket +
         '/' +
         params.Key
-    )
+    );
 
-    return results // For unit tests.
+    return results; // For unit tests.
   } catch (err) {
-    console.log('Error:', err)
+    console.log('Error:', err);
   }
-}
+};
 const uploadImageDb = async (file, imageName, tool_id) => {
   const dbParams = {
     file_name: imageName,
@@ -159,13 +184,13 @@ const uploadImageDb = async (file, imageName, tool_id) => {
     file_type: file.mimetype,
     file_url: `${process.env.CLOUDFRONT_URI}${imageName}`,
     tool_id: tool_id,
-  }
-  const dbResults = await addToolMedia(dbParams)
+  };
+  const dbResults = await addToolMedia(dbParams);
   if (!dbResults.error) {
-    return dbResults
+    return dbResults;
   } else {
-    res.status(400).json({error: dbResults.error})
+    res.status(400).json({error: dbResults.error});
   }
-}
+};
 
-module.exports = tools
+module.exports = tools;
