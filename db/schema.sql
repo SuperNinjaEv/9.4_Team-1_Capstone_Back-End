@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS craftopia_database;
 
 CREATE DATABASE craftopia_database;
 
-\ c craftopia_database;
+\c craftopia_database;
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
@@ -22,7 +22,7 @@ CREATE TABLE users (
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,
   title VARCHAR(180) NOT NULL,
-  tags TEXT,
+  category TEXT,
   body TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   edited_at TIMESTAMP NULL DEFAULT NULL,
