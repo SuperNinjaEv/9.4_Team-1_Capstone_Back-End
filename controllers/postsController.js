@@ -121,6 +121,8 @@ const uploadImageS3 = async (file, imageName, post_id) => {
     Body: file.data,
   }
 
+  //console.log(process.env.AWS_DEFAULT_REGION, 'the region here')
+
   try {
     const results = await s3.send(new PutObjectCommand(params))
     console.log(
