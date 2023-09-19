@@ -75,37 +75,38 @@ posts.delete('/:id', async (req, res) => {
 
 posts.post('/', async (req, res) => {
   
-  const fileKeys = Object.keys(req.files)
+  const fileKeys = Object.keys(req.files)//make conditional for file input 
   const files = []
 
   fileKeys.forEach(key => {
     files.push(req.files[key])
   })
 
-  console.log(req.files);
+  //console.log(req.files);
 
   try {
     const post = req.body;
     const createdPost = await createPosts(post);
     if (!createdPost.error) {
-      files.forEach(async (file, i) => {
+      files.forEach(async (file, i) => { //make conditional for file input 
         console.log(file)
-        // if (i === 0) {
-        //   uploadImageS3(file, `${createdPost.post_id}_thumbnail`)
-        //   await addThumbnail(
-        //     `${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,
-        //     createdPost.post_id
-        //   )
-        // } else {
-        //   uploadImageS3(file, `${createdPost.post_id}_image${i}`)
-        //   uploadImageDb(
-        //     file,
-        //     `${createdPost.post_id}_image${i}`,
-        //     createdPost.post_id
-        //   )
-        // }
+        if (i === 0) {
+          uploadImageS3(file, `${createdPost.post_id}_thumbnail`)
+          await addThumbnail(
+            `${process.env.CLOUDFRONT_URI}/${createdPost.post_id}_thumbnail${i}`,
+            createdPost.post_id
+          )
+        } else {
+          uploadImageS3(file, `${createdPost.post_id}_image${i}`)
+          uploadImageDb(
+            file,
+            `${createdPost.post_id}_image${i}`,
+            createdPost.post_id
+          )
+        }
       })
     }
+    res.status(200).json({createdPost:createdPost})
   } catch (error) {
     console.log(error)
     console.log('Incoming request body:', req.body)
