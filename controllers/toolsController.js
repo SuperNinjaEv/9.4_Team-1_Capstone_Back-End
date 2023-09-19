@@ -102,26 +102,26 @@ tools.post('/', async (req, res) => {
 
   try {
     const tool = req.body
-    const createdtool = await createTools(tool)
-    if (!createdtool.error) {
+    const createdTool = await createTools(tool)
+    if (!createdTool.error) {
       files.forEach(async (file, i) => {
         if (i === 0) {
-          uploadImageS3(file, `${createdtool.tool_id}_thumbnail`)
+          uploadImageS3(file, `tool_${createdTool.tool_id}_thumbnail`)
           await addThumbnailTools(
-            `${process.env.CLOUDFRONT_URI}/${createdtool.tool_id}_thumbnail${i}`,
-            createdtool.tool_id
+            `${process.env.CLOUDFRONT_URI}/tool_${createdTool.tool_id}_thumbnail`,
+            createdTool.tool_id
           )
         } else {
-          uploadImageS3(file, `${createdtool.tool_id}_image${i}`)
+          uploadImageS3(file, `tool_${createdTool.tool_id}_img${i}`)
           uploadImageDb(
             file,
-            `${createdtool.tool_id}_image${i}`,
-            createdtool.tool_id
+            `tool_${createdTool.tool_id}_img${i}`,
+            createdTool.tool_id
           )
         }
       })
     }
-    res.status(200).json({message: 'Post Successful', createdtool: createdtool})
+    res.status(200).json({message: 'Post Successful', createdTool: createdTool})
   } catch (error) {
     console.log(error)
     console.log('Incoming request body:', req.body)
@@ -129,7 +129,7 @@ tools.post('/', async (req, res) => {
   }
 })
 
-const uploadImageS3 = async (file, imageName, tool_id) => {
+const uploadImageS3 = async (file, imageName) => {
   const params = {
     Bucket: process.env.BUCKET_NAME,
     Key: imageName,
