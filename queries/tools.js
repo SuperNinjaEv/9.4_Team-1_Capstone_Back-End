@@ -61,13 +61,14 @@ const deleteTool = async tool_id =>
  */
 const createTools = async tool => {
   const newtool = await db.one(
-    'INSERT INTO tools (name, description, price, stock, condition, user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+    'INSERT INTO tools (name, description, price, stock, condition, created_by, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
     [
       tool.name_tools,
       tool.description,
       tool.price,
       tool.stock_quantity,
       tool.item_condition,
+      tool.created_by,
       tool.user_id,
     ]
   );

@@ -90,16 +90,16 @@ tools.delete('/:tool_id', async (req, res) => {
   const media = await getToolMedia(tool_id);
   try {
     const deletedtool = await deleteTool(tool_id);
-    if (!media.error) {
-      media.forEach(async img => {
-        await s3.send(
-          new DeleteObjectCommand({
-            Bucket: process.env.BUCKET_NAME,
-            Key: img.file_name,
-          })
-        );
-      });
-    }
+    // if (!media.error) {
+    //   media.forEach(async img => {
+    //     await s3.send(
+    //       new DeleteObjectCommand({
+    //         Bucket: process.env.BUCKET_NAME,
+    //         Key: img.file_name,
+    //       })
+    //     );
+    //   });
+    // }
     res.status(200).json(deletedtool);
   } catch (error) {
     console.log(error);
