@@ -1,55 +1,63 @@
-\ c craftopia_database;
+\c craftopia_database;
 
 -- INSERT INTO user_cred (email, password) VALUES ('hellometropcs@gmail.com','user');
 INSERT INTO
-    posts (title, category, body, user_id)
+    posts (title, category, body, created_by, user_id)
 VALUES
     (
         'Hey I just learned how to knit!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'felizj171',
         1
     ),
     (
         'Hey I just learned how to Crochet!',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+         'felizj171',
         1
     ),
     (
         'Hey I just learned how to paint!',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Michel',
         2
     ),
     (
         'Hey I just learned how to Draw!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Michel',
         2
     ),
     (
         'Hey I just learned how to take a good Photo!',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Evan',
         3
     ),
     (
         'Hey I just learned about filmmaking!',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Evan',
         3
     ),
     (
         'Hey I just learned how to Graffiti!',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'sharukh',
         4
     ),
     (
         'Hey I just learned how to Sculpt!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'sharukh',
         4
     );
 
@@ -60,6 +68,7 @@ INSERT INTO
         price,
         stock,
         condition,
+        created_by,
         user_id
     )
 VALUES
@@ -69,6 +78,7 @@ VALUES
         6.99,
         2,
         'new',
+        'felizj171',
         1
     ),
     (
@@ -77,6 +87,7 @@ VALUES
         269.99,
         1,
         'good',
+        'Michel',
         2
     ),
 (
@@ -85,6 +96,7 @@ VALUES
         4.99,
         2,
         'new',
+        'Evan',
         3
     ),
 (
@@ -93,5 +105,6 @@ VALUES
         43.95,
         2,
         'new',
+        'sharukh',
         4
-    ),
+    );
