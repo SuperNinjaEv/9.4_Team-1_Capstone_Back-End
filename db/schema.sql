@@ -40,6 +40,7 @@ CREATE TABLE tools (
   thumbnail TEXT,
   stock INT,
   condition TEXT,
+  category TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE
 );
