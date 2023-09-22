@@ -630,6 +630,7 @@ INSERT INTO
         price,
         stock,
         condition,
+        category,
         created_by,
         user_id
     )
@@ -640,6 +641,7 @@ VALUES
         6.99,
         2,
         'new',
+        'painting',
         'felizj171',
         1
     ),
@@ -649,6 +651,7 @@ VALUES
         269.99,
         1,
         'good',
+        'photography',
         'Michel',
         2
     ),
@@ -658,6 +661,7 @@ VALUES
         4.99,
         2,
         'new',
+        'knitting',
         'Evan',
         3
     ),
@@ -667,6 +671,7 @@ VALUES
         43.95,
         2,
         'new',
+        'graffiti',
         'sharukh',
         4
     );
