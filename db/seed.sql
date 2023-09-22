@@ -1,116 +1,116 @@
 \c craftopia_database;
 
-INSERT INTO 
-    users (name, email, password, username, dob, city_state, profile_pic, aboutme, learning_interest, current_skillset)
-VALUES
-    (
-        'John Doe',
-        'johndoe@example.com',
-        'password123',
-        'johndoe',
-        '1990-05-15',
-        'New York, NY',
-        'profile_pic_johndoe.jpg',
-        'I love art in all its forms!',
-        'Painting, Sketching',
-        'Graphic Design, Illustration'
-    ),
-    (
-        'Alice Smith',
-        'alicesmith@example.com',
-        'password456',
-        'alicesmith',
-        '1985-08-21',
-        'Los Angeles, CA',
-        'profile_pic_alicesmith.jpg',
-        'Photography is my passion!',
-        'Photography',
-        'Portrait Photography, Editing'
-    ),
-    (
-        'Robert Johnson',
-        'robertjohnson@example.com',
-        'password789',
-        'robertjohnson',
-        '1992-03-10',
-        'Chicago, IL',
-        'profile_pic_robertjohnson.jpg',
-        'Filmmaking enthusiast!',
-        'Filmmaking',
-        'Directing, Cinematography'
-    ),
-    (
-        'Emily Davis',
-        'emilydavis@example.com',
-        'passwordabc',
-        'emilydavis',
-        '1988-11-02',
-        'San Francisco, CA',
-        'profile_pic_emilydavis.jpg',
-        'Exploring the world of sculpture',
-        'Sculpt',
-        'Clay Sculpting, Abstract Art'
-    ),
-    (
-        'David Lee',
-        'davidlee@example.com',
-        'passwordxyz',
-        'davidlee',
-        '1995-06-25',
-        'Miami, FL',
-        'profile_pic_davidlee.jpg',
-        'Urban art lover!',
-        'Graffiti',
-        'Street Art, Mural Painting'
-    ),
-    (
-        'Sarah White',
-        'sarahwhite@example.com',
-        'password1234',
-        'sarahwhite',
-        '1998-09-14',
-        'Austin, TX',
-        'profile_pic_sarahwhite.jpg',
-        'Crocheting is my creative outlet',
-        'Crocheting',
-        'Amigurumi, Afghan Stitch'
-    ),
-    (
-        'Michael Brown',
-        'michaelbrown@example.com',
-        'password5678',
-        'michaelbrown',
-        '1993-04-18',
-        'Boston, MA',
-        'profile_pic_michaelbrown.jpg',
-        'Knitting is my therapy',
-        'Knitting',
-        'Knit Stitch, Purl Stitch'
-    ),
-    (
-        'Ella Anderson',
-        'ellaanderson@example.com',
-        'passworddef',
-        'ellaanderson',
-        '1990-07-29',
-        'Seattle, WA',
-        'profile_pic_ellaanderson.jpg',
-        'Passionate about sketching',
-        'Sketch',
-        'Pencil Drawing, Charcoal Sketching'
-    ),
-    (
-        'Daniel Clark',
-        'danielclark@example.com',
-        'passwordghij',
-        'danielclark',
-        '1987-12-05',
-        'Denver, CO',
-        'profile_pic_danielclark.jpg',
-        'Sculpting is my calling',
-        'Sculpt',
-        'Stone Carving, Wood Sculpture'
-    );
+-- INSERT INTO 
+--     users (name, email, password, username, dob, city_state, profile_pic, aboutme, learning_interest, current_skillset)
+-- VALUES
+    -- (
+    --     'John Doe',
+    --     'johndoe@example.com',
+    --     'password123',
+    --     'johndoe',
+    --     '1990-05-15',
+    --     'New York, NY',
+    --     'profile_pic_johndoe.jpg',
+    --     'I love art in all its forms!',
+    --     'Painting, Sketching',
+    --     'Graphic Design, Illustration'
+    -- ),
+    -- (
+    --     'Alice Smith',
+    --     'alicesmith@example.com',
+    --     'password456',
+    --     'alicesmith',
+    --     '1985-08-21',
+    --     'Los Angeles, CA',
+    --     'profile_pic_alicesmith.jpg',
+    --     'Photography is my passion!',
+    --     'Photography',
+    --     'Portrait Photography, Editing'
+    -- ),
+    -- (
+    --     'Robert Johnson',
+    --     'robertjohnson@example.com',
+    --     'password789',
+    --     'robertjohnson',
+    --     '1992-03-10',
+    --     'Chicago, IL',
+    --     'profile_pic_robertjohnson.jpg',
+    --     'Filmmaking enthusiast!',
+    --     'Filmmaking',
+    --     'Directing, Cinematography'
+    -- ),
+    -- (
+    --     'Emily Davis',
+    --     'emilydavis@example.com',
+    --     'passwordabc',
+    --     'emilydavis',
+    --     '1988-11-02',
+    --     'San Francisco, CA',
+    --     'profile_pic_emilydavis.jpg',
+    --     'Exploring the world of sculpture',
+    --     'Sculpt',
+    --     'Clay Sculpting, Abstract Art'
+    -- ),
+    -- (
+    --     'David Lee',
+    --     'davidlee@example.com',
+    --     'passwordxyz',
+    --     'davidlee',
+    --     '1995-06-25',
+    --     'Miami, FL',
+    --     'profile_pic_davidlee.jpg',
+    --     'Urban art lover!',
+    --     'Graffiti',
+    --     'Street Art, Mural Painting'
+    -- ),
+    -- (
+    --     'Sarah White',
+    --     'sarahwhite@example.com',
+    --     'password1234',
+    --     'sarahwhite',
+    --     '1998-09-14',
+    --     'Austin, TX',
+    --     'profile_pic_sarahwhite.jpg',
+    --     'Crocheting is my creative outlet',
+    --     'Crocheting',
+    --     'Amigurumi, Afghan Stitch'
+    -- ),
+    -- (
+    --     'Michael Brown',
+    --     'michaelbrown@example.com',
+    --     'password5678',
+    --     'michaelbrown',
+    --     '1993-04-18',
+    --     'Boston, MA',
+    --     'profile_pic_michaelbrown.jpg',
+    --     'Knitting is my therapy',
+    --     'Knitting',
+    --     'Knit Stitch, Purl Stitch'
+    -- ),
+    -- (
+    --     'Ella Anderson',
+    --     'ellaanderson@example.com',
+    --     'passworddef',
+    --     'ellaanderson',
+    --     '1990-07-29',
+    --     'Seattle, WA',
+    --     'profile_pic_ellaanderson.jpg',
+    --     'Passionate about sketching',
+    --     'Sketch',
+    --     'Pencil Drawing, Charcoal Sketching'
+    -- ),
+    -- (
+    --     'Daniel Clark',
+    --     'danielclark@example.com',
+    --     'passwordghij',
+    --     'danielclark',
+    --     '1987-12-05',
+    --     'Denver, CO',
+    --     'profile_pic_danielclark.jpg',
+    --     'Sculpting is my calling',
+    --     'Sculpt',
+    --     'Stone Carving, Wood Sculpture'
+    -- );
 
 
 
@@ -122,148 +122,148 @@ VALUES
         'I just finished my first knitting project!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'user123',
+        'felizj171',
         1
     ),
     (
         'Looking for knitting tips!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitlover',
+        'felizj171',
         1
     ),
     (
         'My favorite knitting patterns!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'crafty123',
+        'felizj171',
         1
     ),
     (
         'Knitting for beginners: A step-by-step guide',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'newknitter',
-        2
+        'felizj171',
+        1
     ),
     (
         'Knitting supplies: Must-haves for every knitter',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'craftygirl',
+        'Evan',
         3
     ),
     (
         'Share your latest knitting projects!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'yarnlover',
+        'felizj171',
         1
     ),
     (
         'Knitting challenges: Lets solve them together!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitmaster',
-        7
+        'Michel',
+        2
     ),
     (
         'Knitting inspiration: What motivates you to knit?',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'creativeknits',
-        7
+        'Michel',
+        2
     ),
     (
         'Knitting community meetup this weekend!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitclub',
-        9
+        'Michel',
+        2
     ),
     (
         'Just finished knitting a cozy sweater!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitqueen',
+        'sharukh',
         4
     ),
     (
         'Knitting with a twist: Try these advanced techniques!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitmaster',
+        'Michel',
         2
     ),
     (
         'Need help with knitting patterns?',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'craftyknits',
-        5
+        'felizj171',
+        1
     ),
     (
         'Knitting for a cause: Charity knitting projects',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitforgood',
-        7
+        'felizj171',
+        1
     ),
     (
         'Share your favorite yarn brands!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'yarnlover',
-        8
+        'Michel',
+        2
     ),
     (
         'Knitting with friends: Host a knitting party!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitparty',
-        9
+        'Evan',
+        3
     ),
     (
         'Knitting challenges: Lets conquer them together!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitchampion',
+        'Michel',
         2
     ),
     (
         'Show off your knitting skills with photos!',
         'Knitting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'knitpics',
-        6
+        'felizj171',
+        1
     ),
     (
         'My crochet journey: From beginner to advanced!',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'crochetlover',
-        3
+        'felizj171',
+        1
     ),
     (
         'Crocheting for a cause: Making blankets for shelters',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'crochetforgood',
-        7
+        'Michel',
+        1
     ),
     (
         'Tips for choosing the right crochet hook size',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'hookmaster',
-        8
+        'felizj171',
+        1
     ),
     (
         'Share your favorite crochet stitch patterns!',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'stitchcraft',
-        5
+        'Evan',
+        3
     ),
     (
         'Crochet fashion: Create your own stylish accessories!',
@@ -276,351 +276,351 @@ VALUES
         'Crochet challenges: Lets tackle them head-on!',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'crochetchampion',
-        7
+        'Michel',
+        2
     ),
     (
         'Crochet inspiration: Share your latest creations!',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'creativecrochet',
-        8
+        'sharukh',
+        4
     ),
     (
         'Crocheting community meetup this month!',
         'Crocheting',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'crochetclub',
-        9
+        'sharukh',
+        4
     ),
     (
         'My latest painting: A masterpiece in progress!',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'artlover',
-        3
+        'sharukh',
+        4
     ),
     (
         'Painting landscapes: Tips and techniques',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'landscapeartist',
+        'Evan',
         3
     ),
     (
         'Abstract painting: Let your creativity flow!',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'abstractart',
+        'Evan',
         3
     ),
     (
         'Painting with acrylics: A beginners guide',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'acrylicartist',
+        'Evan',
         3
     ),
     (
         'Painting inspirations: Share your favorite artists!',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'artinspiration',
+        'sharukh',
         4
     ),
     (
         'Painting challenges: Overcome them with us!',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'paintingchamp',
-        5
+        'Michel',
+        2
     ),
     (
         'Artistic collaborations: Join our painting group!',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'artcollab',
-        6
+        'felizj171',
+        1
     ),
     (
         'Painting therapy: Finding peace through art',
         'Paint',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'paintingtherapy',
-        7
+        'Michel',
+        2
     ),
     (
         'Sketching my way through life!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sketchartist',
-        8
+        'felizj171',
+        1
     ),
     (
         'Pencil vs. Ink: The great sketching debate!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sketchdebate',
-        9
+        'felizj171',
+        1
     ),
     (
         'Sketching faces: Tips for capturing expressions',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'portraitartist',
+        'sharukh',
         4
     ),
     (
         'Sketching nature: Bringing landscapes to life!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'natureartist',
+        'felizj171',
         1
     ),
     (
         'Sketching inspiration: Share your favorite sketches!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sketchinspire',
+        'sharukh',
         4
     ),
     (
         'Sketching challenges: Lets sketch our way to success!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sketchchamp',
+        'Evan',
         3
     ),
     (
         'Sketching techniques: Learn from the pros!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sketchpro',
+        'sharukh',
         4
     ),
     (
         'Sketching community meetup: Bring your sketchbooks!',
         'Sketch',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sketchmeetup',
-        5
+        'felizj171',
+        1
     ),
     (
         'Capturing lifes moments through my lens!',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'photoguru',
-        6
+        'felizj171',
+        1
     ),
     (
         'Photography gear: Whats in my camera bag?',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'gearlover',
-        7
+        'Evan',
+        3
     ),
     (
         'Photography tips for beginners: Start shooting!',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'beginnerphoto',
-        8
+        'felizj171',
+        1
     ),
     (
         'Portrait photography: Capturing the essence of people',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'portraitlover',
-        9
+        'felizj171',
+        1
     ),
     (
         'Photography inspiration: Share your best shots!',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'photoinspire',
+        'sharukh',
         4
     ),
     (
         'Photography challenges: Overcoming creative blocks!',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'photographychamp',
+        'felizj171',
         1
     ),
     (
         'Photography techniques: Mastering the art of composition',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'compositionpro',
-        5
+        'sharukh',
+        4
     ),
     (
         'Photography enthusiasts meetup: Join us!',
         'Photography',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'photomeetup',
-        5
+        'Michel',
+        2
     ),
     (
         'Lights, camera, action: My filmmaking journey!',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'filmlover',
-        5
+        'Evan',
+        3
     ),
     (
         'Independent filmmaking: From script to screen',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'indiefilm',
-        5
+        'Evan',
+        3
     ),
     (
         'Cinematography techniques: Capturing the perfect shot',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'cinematographer',
-        6
+        'Evan',
+        3
     ),
     (
         'Screenwriting tips: Crafting compelling stories',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'screenwriter',
-        7
+        'Evan',
+        3
     ),
     (
         'Film festivals: Showcasing your work to the world',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'filmfest',
-        8
+        'felizj171',
+        1
     ),
     (
         'Filmmaking challenges: Overcoming obstacles in production',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'filmchamp',
-        5
+        'Michel',
+        2
     ),
     (
         'Film critique: Analyzing the art of cinema',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'filmcritic',
-        6
+        'felizj171',
+        1
     ),
     (
         'Filmmaking community meetup: Join fellow filmmakers!',
         'Filmmaking',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'filmcommunity',
-        6
+        'felizj171',
+        1
     ),
     (
         'Expressing myself through urban art!',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'graffitiartist',
-        6
+        'felizj171',
+        1
     ),
     (
         'Street art: Transforming public spaces with graffiti',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'streetartist',
-        6
+        'felizj171',
+        1
     ),
     (
         'Graffiti styles: Exploring the world of tags and murals',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'graffitistyles',
+        'sharukh',
         4
     ),
     (
         'Graffiti culture: Artistic expression in the urban world',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'graffiticulture',
-        5
+        'Evan',
+        3
     ),
     (
         'Graffiti inspiration: Share your latest street art!',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'streetartinspire',
-        6
+        'Evan',
+        3
     ),
     (
         'Graffiti challenges: Pushing the boundaries of art!',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'graffitichamp',
-        7
+        'Michel',
+        2
     ),
     (
         'Graffiti workshops: Learn the art of tagging!',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'graffitiworkshop',
-        8
+        'Evan',
+        3
     ),
     (
         'Graffiti community meetup: Join the street art movement!',
         'Graffiti',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'graffiticommunity',
-        9
+        'felizj171',
+        1
     ),
     (
         'Sculpting: Transforming raw materials into art!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sculptartist',
+        'sharukh',
         4
     ),
     (
         'Sculpture techniques: Master the art of molding!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sculpturepro',
+        'felizj171',
         1
     ),
     (
         'Sculpting with clay: From novice to expert!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'claysculptor',
+        'Michel',
         2
     ),
     (
         'Sculpture inspirations: Share your latest creations!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sculptureinspire',
+        'Evan',
         3
     ),
     (
         'Sculpture challenges: Pushing the limits of artistry!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sculpturechamp',
+        'sharukh',
         4
     ),
     (
         'Sculpting workshops: Discover the art of molding!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sculptureworkshop',
-        5
+        'felizj171',
+        1
     ),
     (
         'Sculpture community meetup: Join fellow sculptors!',
         'Sculpt',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'sculpturecommunity',
-        7
+        'felizj171',
+        1
     );
 
 INSERT INTO

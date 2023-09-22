@@ -36,11 +36,11 @@ const getOneTool = async tool_id =>
  * @returns {object} a single tool via json format that has been edited
  */
 const updateOneTool = async tools => {
-  const {name, description, price, stock, condition, tool_id} = tools;
+  const {name, description, price, stock, condition, category, tool_id} = tools;
 
   return await db.one(
-    'UPDATE tools SET name=$1, description=$2, price=$3, stock=$4, item=$5 WHERE tool_id=$6 RETURNING *',
-    [name, description, price, stock, condition, tool_id]
+    'UPDATE tools SET name=$1, description=$2, price=$3, stock=$4, condition=$5, category=$6 WHERE tool_id=$7 RETURNING *',
+    [name, description, price, stock, condition, category, tool_id]
   );
 };
 
@@ -61,13 +61,14 @@ const deleteTool = async tool_id =>
  */
 const createTools = async tool => {
   const newtool = await db.one(
-    'INSERT INTO tools (name, description, price, stock, condition, created_by, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    'INSERT INTO tools (name, description, price, stock, condition, category, created_by, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
     [
       tool.name_tools,
       tool.description,
       tool.price,
       tool.stock_quantity,
       tool.item_condition,
+      tool.category,
       tool.created_by,
       tool.user_id,
     ]
