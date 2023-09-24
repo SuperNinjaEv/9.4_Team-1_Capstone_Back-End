@@ -50,7 +50,7 @@ auth.post("/signup", async (req, res) => {
   };
   // Set your secret key. Remember to switch to your live secret key in production.
   // See your keys here: https://dashboard.stripe.com/apikeys
-  const stripe = require("stripe")(process.env.STIPE_API_KEY);
+  const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
   const existingAccount = await findAccount(newUser.email);
   if (existingAccount.length > 0) {
