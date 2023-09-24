@@ -149,12 +149,12 @@ auth.post('/logout', (req, res) => {
 auth.put('/:id', async (req, res) => {
   const profilePic = req.files
   if (profilePic !== null) {
-    await s3.send(
-      new DeleteObjectCommand({
-        Bucket: process.env.BUCKET_NAME,
-        Key: `${req.body.username}-profile-pic`,
-      })
-    )
+    // await s3.send(
+    //   new DeleteObjectCommand({
+    //     Bucket: process.env.BUCKET_NAME,
+    //     Key: `${req.body.username}-profile-pic`,
+    //   })
+    // )
     uploadImageS3(profilePic['profile-pic'], `${req.body.username}-profile-pic`)
   }
   const updatedUser = {

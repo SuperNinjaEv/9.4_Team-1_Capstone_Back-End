@@ -74,7 +74,7 @@ posts.delete('/:id', async (req, res) => {
 });
 
 posts.post('/', async (req, res) => {
-  const fileKeys = req.files!==null?Object.keys(req.files):[];
+  const fileKeys = req.files?Object.keys(req.files):[];
   const files = [];
   fileKeys.forEach(key => {
     files.push(req.files[key]);
