@@ -48,6 +48,9 @@ auth.post('/signup', async (req, res) => {
     city_state: req.body.city_state,
     aboutme: req.body.aboutme,
   }
+  // Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+const stripe = require('stripe')(process.env.API_TEST_CODE);
 
   const existingAccount = await findAccount(newUser.email)
   if (existingAccount.length > 0) {
@@ -72,6 +75,21 @@ auth.post('/signup', async (req, res) => {
           {email: newAccountInfo.email, password: newAccountInfo.password},
           process.env.SECRET_KEY
         )
+
+
+        const account = await stripe.accounts.create({
+        type: 'express',
+        email:newUser.email
+        });
+// for refresh_url, this is a redirect if there isa n error. Will create page on frontend for an error
+//for return_url, this is if the user signs up successfully, and redirects to this page
+        // const accountLink = await stripe.accountLinks.create({
+        //   account: newUser.email,
+        //   refresh_url: 'https://craftopia-create.netlify.app/',
+        //   return_url: `http://localhost:5173/${newUser.username}/profile`,
+        //   type: 'account_onboarding',
+        // });
+
         res.status(200).json({
           message: 'Account creation Success',
           user: USER[0],
