@@ -76,10 +76,10 @@ auth.post("/signup", async (req, res) => {
           process.env.SECRET_KEY
         );
 
-        const account = await stripe.accounts.create({
-          type: "express",
-          email: newUser.email,
-        });
+        // const stripeAccount = await stripe.accounts.create({
+        //   type: "express",
+        //   email: newUser.email,
+        // });
         // for refresh_url, this is a redirect if there isa n error. Will create page on frontend for an error
         //for return_url, this is if the user signs up successfully, and redirects to this page
         // const accountLink = await stripe.accountLinks.create({
@@ -166,16 +166,13 @@ auth.post("/logout", (req, res) => {
 auth.put("/:id", async (req, res) => {
   const profilePic = req.files;
   if (profilePic !== null) {
-    await s3.send(
-      new DeleteObjectCommand({
-        Bucket: process.env.BUCKET_NAME,
-        Key: `${req.body.username}-profile-pic`,
-      })
-    );
-    uploadImageS3(
-      profilePic["profile-pic"],
-      `${req.body.username}-profile-pic`
-    );
+    // await s3.send(
+    //   new DeleteObjectCommand({
+    //     Bucket: process.env.BUCKET_NAME,
+    //     Key: `${req.body.username}-profile-pic`,
+    //   })
+    // )
+    uploadImageS3(profilePic['profile-pic'], `${req.body.username}-profile-pic`)
   }
   const updatedUser = {
     user_id: req.body.user_id,

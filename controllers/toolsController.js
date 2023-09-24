@@ -19,18 +19,6 @@ const {
 } = require('../queries/tools');
 const s3 = new S3Client();
 
-//possible scrap code below
-// //all tools from specific user
-// tools.get("/", async (req, res) => {
-//   try {
-//     const tools = await getAlltoolsFromUser();
-//     res.json(tools);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(400).json({ error: "something went terribly wrong!" });
-//   }
-// });
-//possible scrap code above
 
 tools.get('/', async (req, res) => {
   try {
@@ -44,7 +32,7 @@ tools.get('/', async (req, res) => {
 
 // Get all tools from a specific user
 
-tools.get('/:id', async (req, res) => {
+tools.get('/all/:id', async (req, res) => {
   const {id} = req.params;
   try {
     const tools = await getAllToolsFromUser(id);
@@ -57,11 +45,12 @@ tools.get('/:id', async (req, res) => {
 
 // Get a single tool from a specific user
 
-tools.get('/:tool_id', async (req, res) => {
+tools.get('/one/:tool_id', async (req, res) => {
   try {
     const {tool_id} = req.params;
     const tool = await getOneTool(tool_id);
-    return res.json(tool);
+    const toolMedia = await getToolMedia(tool_id);
+    return res.status(200).json({tool: tool, media: toolMedia});
   } catch (error) {
     console.log(error);
     res.status(404).json({error: 'That tool log does not exist!'});
@@ -112,7 +101,7 @@ tools.delete('/:tool_id', async (req, res) => {
 // Creates a tool for a specific user
 
 tools.post('/', async (req, res) => {
-  const fileKeys = Object.keys(req.files);
+  const fileKeys = req.files?Object.keys(req.files):[];
   const files = [];
   fileKeys.forEach(key => {
     files.push(req.files[key]);
