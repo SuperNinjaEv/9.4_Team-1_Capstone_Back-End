@@ -842,7 +842,67 @@ VALUES
         1
     ),
     (
-        'Canon camera lense extender RF1.4x  ',
+        'Level 2 Gallery Traditional Canvas',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        69.99,
+        7,
+        'new',
+        'Painting',
+        'Michel',
+        2
+    ),
+    (
+        'Black Acrylic Paint, 40z',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        11.99,
+        2,
+        'new',
+        'Painting',
+        'Michel',
+        2
+    ),
+    (
+        'Easel Art Box',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        52.99,
+        3,
+        'good',
+        'Painting',
+        'Michel',
+        2
+    ),
+    (
+        'White Gesso',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        14.99,
+        4,
+        'new',
+        'Painting',
+        'Evan',
+        3
+    ),
+    (
+        'High Gloss Varnish',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        17.99,
+        2,
+        'new',
+        'Painting',
+        'Evan',
+        3
+    ),
+    (
+        'Modeling Paste',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        9.99,
+        4,
+        'new',
+        'Painting',
+        'felizj17',
+        1
+    ),
+    (
+        'Canon camera lense extender RF1.4x',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         269.99,
         1,
@@ -851,7 +911,25 @@ VALUES
         'Michel',
         2
     ),
-(
+    (
+        'Western Cowboy Backdrop',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        27.99,
+        'good',
+        'Photography',
+        'sharukh',
+        4
+    ),
+    (
+        'Mini Photo Studio',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        29.99,
+        'good',
+        'Photography',
+        'sharukh',
+        4
+    ),
+    (
         '600ft assort yarn',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         4.99,
@@ -861,13 +939,53 @@ VALUES
         'Evan',
         3
     ),
-(
+    (
         'Spray Painting Black, Red, Blue, Yellow',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         43.95,
         2,
         'new',
-        'graffiti',
+        'Graffiti',
         'sharukh',
         4
+    ),
+    (
+        'Interactive Pen Display',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        1700.00,
+        1,
+        'good',
+        'Digital Artistry',
+        'Evan',
+        3
+    ),
+    (
+        'Sculpting Wax',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        20.00,
+        4,
+        'new',
+        'Sculpting',
+        'Evan',
+        3
+    ),
+    (
+        'Yarn',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        12.00,
+        6,
+        'good',
+        'Printmaking',
+        'sharukh',
+        4
+    ),
+    (
+        '4 Foot Long Mold Trap',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        5.00,
+        4,
+        'good',
+        'Ceramics',
+        'Michel',
+        2
     );
