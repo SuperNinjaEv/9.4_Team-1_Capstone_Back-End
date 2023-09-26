@@ -165,7 +165,7 @@ auth.post("/logout", (req, res) => {
 
 auth.put("/:id", async (req, res) => {
   const profilePic = req.files;
-  if (profilePic !== null) {
+  if (profilePic) {
     // await s3.send(
     //   new DeleteObjectCommand({
     //     Bucket: process.env.BUCKET_NAME,
