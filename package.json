@@ -28,6 +28,6 @@
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.1",
     "pg-promise": "^11.5.3",
-    "stripe": "^13.7.0"
+    "stripe": "^13.8.0"
   }
 }
