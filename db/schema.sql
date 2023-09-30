@@ -14,8 +14,8 @@ CREATE TABLE users (
   city_state TEXT NOT NULL,
   profile_pic TEXT,
   aboutme TEXT,
-  learning_interest TEXT,
-  current_skillset TEXT,
+  learning_interest TEXT NOT NULL DEFAULT 'Unsure',
+  current_skillset TEXT NOT NULL DEFAULT 'Beginner',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
