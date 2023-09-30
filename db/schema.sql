@@ -7,17 +7,20 @@ CREATE DATABASE craftopia_database;
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
-  email VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
   password TEXT NOT NULL,
   username VARCHAR(40) NOT NULL UNIQUE,
-  dob VARCHAR(10) NOT NULL,
+  dob DATE NOT NULL,
   city_state TEXT NOT NULL,
   profile_pic TEXT,
   aboutme TEXT,
-  learning_interest TEXT NOT NULL DEFAULT '',
-  current_skillset TEXT NOT NULL DEFAULT '',
+  learning_interest TEXT,
+  current_skillset TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+--  learning_interest TEXT DEFAULT 'Unsure',
+--   current_skillset TEXT DEFAULT 'Beginner',
 
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,
