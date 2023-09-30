@@ -37,7 +37,7 @@ app.use("/tools", toolsController);
 //   try {
 //     // Calculate the total amount based on cart items
 //     // For simplicity, assuming a fixed amount here
-//     const amount = 2000; // amount in cents, e.g., $20.00
+//     const {amount} = req.body; // amount in cents, e.g., $20.00
 
 //     // Create a PaymentIntent
 //     const paymentIntent = await stripe.paymentIntents.create({
@@ -54,24 +54,24 @@ app.use("/tools", toolsController);
 //   }
 // });
 
-app.post('/checkout', async (req, res) => {
+app.post("/checkout", async (req, res) => {
   try {
-      const { grandTotal } = req.body;
-      
-      // Convert amount to cents (assuming the frontend sends the amount in dollars)
-      const amountInCents = grandTotal * 100;
-      
-      // Create a PaymentIntent
-      const paymentIntent = await stripe.paymentIntents.create({
-          amount: amountInCents,
-          currency: 'usd',
-      });
-      
-      // Send the client secret to the frontend
-      res.json({ clientSecret: paymentIntent.client_secret });
+    const { options } = req.body;
+
+    // Convert amount to cents (assuming the frontend sends the amount in dollars)
+    // const amountInCents = Math.round(options.amount * 100);
+
+    // Create a PaymentIntent
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: options.amount,
+      currency: options.currency
+    });
+
+    // Send the client secret to the frontend
+    res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
-      console.error(error);
-      res.status(500).send(error.message);
+    console.error(error);
+    res.status(500).send(error.message);
   }
 });
 
