@@ -24,6 +24,10 @@ const getAllPostsFromUser = async id => {
   } else return []
 }
 
+
+const getPostMedia = async(id)=>{
+  return await db.any('SELECT * FROM post_media WHERE post_id=$1', id)
+}
 //function will get a single post from a single user given the email to find the userid and hence ensuring user authenticated before the post is brought up retrieval
 /**
  * gets a single post from a user based on email and post identification
@@ -92,6 +96,7 @@ const addThumbnail = async (thumbnail, post_id) => {
   return updatePost.error
 }
 
+
 module.exports = {
   getAllPosts,
   getAllPostsFromUser,
@@ -100,5 +105,6 @@ module.exports = {
   deletePost,
   createPosts,
   postMedia,
+  getPostMedia,
   addThumbnail,
 }
