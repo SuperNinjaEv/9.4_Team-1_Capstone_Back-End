@@ -34,6 +34,7 @@ const getAccountInfo = async email => {
  * @returns {object} credentials for user's account
  */
 const addAccount = async account => {
+  console.log(account)
   const NEW_ACCOUNT = await db.one(
     'INSERT INTO users (name, email, password, username, dob, city_state, aboutme) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
     [
