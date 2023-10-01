@@ -1,4 +1,6 @@
 const express = require('express')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 const cors = require('cors')
 const jsonParser = express.json()
 const app = express()
@@ -30,6 +32,48 @@ app.use('/auth', authController)
 app.get('/', (_, res) => res.send('hello'))
 app.use('/posts', postsController)
 app.use("/tools", toolsController);
+
+// app.post('/create-intent', async (req, res) => {
+//   try {
+//     // Calculate the total amount based on cart items
+//     // For simplicity, assuming a fixed amount here
+//     const {amount} = req.body; // amount in cents, e.g., $20.00
+
+//     // Create a PaymentIntent
+//     const paymentIntent = await stripe.paymentIntents.create({
+//       amount,
+//       currency: 'usd',
+//       // Add more attributes as needed
+//     });
+
+//     // Send the client secret to the frontend
+//     res.json({ clientSecret: paymentIntent.client_secret });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send(error.message);
+//   }
+// });
+
+app.post("/checkout", async (req, res) => {
+  try {
+    const { options } = req.body;
+
+    // Convert amount to cents (assuming the frontend sends the amount in dollars)
+    // const amountInCents = Math.round(options.amount * 100);
+
+    // Create a PaymentIntent
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: options.amount,
+      currency: options.currency
+    });
+
+    // Send the client secret to the frontend
+    res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error.message);
+  }
+});
 
 
 module.exports = app

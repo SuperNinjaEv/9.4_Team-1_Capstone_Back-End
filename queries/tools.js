@@ -18,6 +18,12 @@ const getAllToolsFromUser = async id => {
   } else return userTools;
 };
 
+const getSingleToolsAll = async tool_id => {
+  const userTools = await db.any('SELECT * FROM tools WHERE tool_id=$1', tool_id);
+  return userTools;
+};
+
+
 //function will get a single tool from a single user given the email to find the userid and hence ensuring user authenticated before the tool is brought up retrieval
 /**
  * gets a single tool from a user based on email and tool identification
@@ -124,4 +130,5 @@ module.exports = {
   createTools,
   addToolMedia,
   addThumbnailTools,
+  getSingleToolsAll
 };

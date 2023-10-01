@@ -16,6 +16,7 @@ const {
   addThumbnailTools,
   addToolMedia,
   getToolMedia,
+  getSingleToolsAll
 } = require('../queries/tools');
 const s3 = new S3Client();
 
@@ -30,6 +31,9 @@ tools.get('/', async (req, res) => {
   }
 });
 
+
+
+
 // Get all tools from a specific user
 
 tools.get('/all/:id', async (req, res) => {
@@ -42,6 +46,18 @@ tools.get('/all/:id', async (req, res) => {
     res.status(400).json({error: 'Something went terribly wrong!'});
   }
 });
+
+tools.get('/:id', async (req, res) => {
+  const {id} = req.params;
+  try {
+    const tools = await getSingleToolsAll(id);
+    return res.json(tools);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({error: 'Something went terribly wrong!'});
+  }
+});
+
 
 // Get a single tool from a specific user
 
