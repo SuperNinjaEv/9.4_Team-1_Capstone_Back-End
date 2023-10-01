@@ -14,7 +14,7 @@ const {
 const s3 = new S3Client();
 
 //all posts from specific user
-posts.get('/:id', async (req, res) => {
+posts.get('/all/:id', async (req, res) => {
   const {id} = req.params;
   try {
     const posts = await getAllPostsFromUser(id);
@@ -36,7 +36,7 @@ posts.get('/', async (req, res) => {
   }
 });
 
-posts.get('/:id', async (req, res) => {
+posts.get('/one/:id', async (req, res) => {
   try {
     const {id} = req.params;
     const post = await getOnePost(id);

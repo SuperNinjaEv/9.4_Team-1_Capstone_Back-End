@@ -1,17 +1,17 @@
-const auth = require("express").Router();
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const auth = require('express').Router();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const {
   findAccount,
   addAccount,
   getAccountInfo,
   updateAccount,
-} = require("../queries/auth");
+} = require('../queries/auth');
 const {
   S3Client,
   PutObjectCommand,
   DeleteObjectCommand,
-} = require("@aws-sdk/client-s3");
+} = require('@aws-sdk/client-s3');
 const s3 = new S3Client();
 
 const uploadImageS3 = async (file, imageName) => {
@@ -24,21 +24,21 @@ const uploadImageS3 = async (file, imageName) => {
   try {
     const results = await s3.send(new PutObjectCommand(params));
     console.log(
-      "Successfully created " +
+      'Successfully created ' +
         params.Key +
-        " and uploaded it to " +
+        ' and uploaded it to ' +
         params.Bucket +
-        "/" +
+        '/' +
         params.Key
     );
 
     return results; // For unit tests.
   } catch (err) {
-    console.log("Error:", err);
+    console.log('Error:', err);
   }
 };
 
-auth.post("/signup", async (req, res) => {
+auth.post('/signup', async (req, res) => {
   const newUser = {
     name: req.body.name,
     email: req.body.email.toLowerCase(),
@@ -50,17 +50,17 @@ auth.post("/signup", async (req, res) => {
   };
   // Set your secret key. Remember to switch to your live secret key in production.
   // See your keys here: https://dashboard.stripe.com/apikeys
-  const stripe = require("stripe")(process.env.STRIPE_API_KEY);
+  const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 
   const existingAccount = await findAccount(newUser.email);
   if (existingAccount.length > 0) {
     res
       .status(405)
-      .json({ error: "Account associated with that email already exist" });
+      .json({error: 'Account associated with that email already exist'});
   } else if (existingAccount.length === 0) {
     bcrypt.hash(newUser.password, 10, async (error, hash) => {
       if (error) {
-        res.status(error).json({ error: "server error" });
+        res.status(error).json({error: 'server error'});
       }
       const newAccountInfo = {
         ...newUser,
@@ -72,7 +72,7 @@ auth.post("/signup", async (req, res) => {
       } else {
         const USER = await getAccountInfo(newUser.email);
         const token = jwt.sign(
-          { email: newAccountInfo.email, password: newAccountInfo.password },
+          {email: newAccountInfo.email, password: newAccountInfo.password},
           process.env.SECRET_KEY
         );
 
@@ -90,7 +90,7 @@ auth.post("/signup", async (req, res) => {
         // });
 
         res.status(200).json({
-          message: "Account creation Success",
+          message: 'Account creation Success',
           user: USER[0],
           token: token,
         });
@@ -99,13 +99,13 @@ auth.post("/signup", async (req, res) => {
   }
 });
 
-auth.post("/login", async (req, res) => {
-  const { email, password, persist } = req.body;
+auth.post('/login', async (req, res) => {
+  const {email, password, persist} = req.body;
   try {
     const EXISTING_ACCOUNT = await findAccount(email.toLowerCase());
 
     if (EXISTING_ACCOUNT.length === 0) {
-      res.status(405).json({ error: " Email not found, register now" });
+      res.status(405).json({error: ' Email not found, register now'});
     } else {
       bcrypt.compare(
         password,
@@ -114,18 +114,18 @@ auth.post("/login", async (req, res) => {
           if (error) {
             res
               .status(500)
-              .json({ error: "Sorry, something went wrong." + error });
+              .json({error: 'Sorry, something went wrong.' + error});
           } else if (result) {
             const USER = await getAccountInfo(email.toLowerCase());
             const token = jwt.sign(
-              { email: email.toLowerCase(), password: password },
+              {email: email.toLowerCase(), password: password},
               process.env.SECRET_KEY
             );
             res
               .status(200)
-              .json({ message: "Welcome Back!", user: USER[0], token: token });
+              .json({message: 'Welcome Back!', user: USER[0], token: token});
           } else if (!result) {
-            res.status(400).json({ error: "Email or password do not match." });
+            res.status(400).json({error: 'Email or password do not match.'});
           }
         }
       );
@@ -133,12 +133,12 @@ auth.post("/login", async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ error: "Server error while signing in, try again later." });
+      .json({error: 'Server error while signing in, try again later.'});
   }
 });
 
-auth.post("/token", (req, res) => {
-  const { cookie } = req.body;
+auth.post('/token', (req, res) => {
+  const {cookie} = req.body;
   if (cookie === undefined) return;
   const token = cookie;
   jwt.verify(token, process.env.SECRET_KEY, async (error, account) => {
@@ -146,13 +146,13 @@ auth.post("/token", (req, res) => {
       const USER = await getAccountInfo(account.email);
       res
         .status(200)
-        .json({ message: `Welcome back ${USER[0].username}`, user: USER[0] });
+        .json({message: `Welcome back ${USER[0].username}`, user: USER[0]});
     }
   });
 });
-auth.post("/logout", (req, res) => {
+auth.post('/logout', (req, res) => {
   res
-    .clearCookie("token", {
+    .clearCookie('token', {
       // origin: process.env.ORIGIN,
       // secure: true,
     })
@@ -160,11 +160,12 @@ auth.post("/logout", (req, res) => {
     //   origin: process.env.ORIGIN,
     //   secure: true,
     // })
-    .json({ message: "logged out" });
+    .json({message: 'logged out'});
 });
 
-auth.put("/:id", async (req, res) => {
+auth.put('/:id', async (req, res) => {
   const profilePic = req.files;
+  console.log(profilePic);
   if (profilePic) {
     // await s3.send(
     //   new DeleteObjectCommand({
@@ -172,21 +173,23 @@ auth.put("/:id", async (req, res) => {
     //     Key: `${req.body.username}-profile-pic`,
     //   })
     // )
-    uploadImageS3(profilePic['profile-pic'], `${req.body.username}-profile-pic`)
+    uploadImageS3(
+      profilePic['profile-pic'],
+      `${req.body.username}-profile-pic`
+    );
   }
   const updatedUser = {
     user_id: req.body.user_id,
-    profile_pic:
-      profilePic === null
-        ? req.body.profile_pic
-        : `${process.env.CLOUDFRONT_URI}${req.body.username}-profile-pic`,
+    profile_pic: profilePic
+      ? `${process.env.CLOUDFRONT_URI}${req.body.username}-profile-pic`
+      : req.body.profile_pic,
     learning_interest: req.body.learning_interest,
     current_skillset: req.body.current_skillset,
     city_state: req.body.city_state,
     aboutme: req.body.aboutme,
   };
   const updatedAccountResults = await updateAccount(updatedUser);
-  res.status(200).json({ updatedAccount: updatedAccountResults });
+  res.status(200).json({updatedAccount: updatedAccountResults});
 });
 
 module.exports = auth;
