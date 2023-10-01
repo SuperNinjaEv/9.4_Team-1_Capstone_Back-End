@@ -5,6 +5,7 @@ const {
   getAllPostsFromUser,
   getAllPosts,
   getOnePost,
+  getPostMedia,
   updateOnePost,
   deletePost,
   createPosts,
@@ -40,7 +41,8 @@ posts.get('/one/:id', async (req, res) => {
   try {
     const {id} = req.params;
     const post = await getOnePost(id);
-    res.json(post);
+    const media = await getPostMedia(id)
+    res.status(200).json({post:post, media:media});
   } catch (error) {
     console.log(error);
     res.status(404).json({error: 'That post log does not exist!'});
