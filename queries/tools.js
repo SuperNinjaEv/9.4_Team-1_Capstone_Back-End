@@ -69,11 +69,11 @@ const createTools = async tool => {
   const newtool = await db.one(
     'INSERT INTO tools (name, description, price, stock, condition, category, created_by, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
     [
-      tool.name_tools,
+      tool.name,
       tool.description,
       tool.price,
-      tool.stock_quantity,
-      tool.item_condition,
+      tool.stock,
+      tool.condition,
       tool.category,
       tool.created_by,
       tool.user_id,

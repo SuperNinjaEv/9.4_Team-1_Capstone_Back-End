@@ -117,6 +117,7 @@ tools.delete('/:tool_id', async (req, res) => {
 // Creates a tool for a specific user
 
 tools.post('/', async (req, res) => {
+  console.log(req.body)
   const fileKeys = req.files?Object.keys(req.files):[];
   const files = [];
   fileKeys.forEach(key => {

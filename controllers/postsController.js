@@ -26,6 +26,10 @@ posts.get('/all/:id', async (req, res) => {
   }
 });
 
+posts.post('/addtofav', async (req, res)=>{
+  
+})
+
 //all posts from all users
 posts.get('/', async (req, res) => {
   try {
@@ -90,7 +94,7 @@ posts.post('/', async (req, res) => {
         if (i === 0) {
           uploadImageS3(file, `post_${createdPost.post_id}_thumbnail`);
           await addThumbnail(
-            `${process.env.CLOUDFRONT_URI}/post_${createdPost.post_id}_thumbnail${i}`,
+            `${process.env.CLOUDFRONT_URI}post_${createdPost.post_id}_thumbnail`,
             createdPost.post_id
           );
         } else {
