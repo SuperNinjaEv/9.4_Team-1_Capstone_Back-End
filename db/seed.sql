@@ -75,10 +75,58 @@ VALUES
 ('figure_1', 300, 'image/WebP', 'https://s7.orientaltrading.com/is/image/OrientalTrading/13730110?$PDP_VIEWER_IMAGE$', 18),
 ('figure_1', 300, 'image/jpg', 'https://i.pinimg.com/originals/33/f1/7a/33f17a74cdd315759106d461b1c0acd3.jpg', 19),
 ('figure_1', 300, 'image/WebP', 'https://images.squarespace-cdn.com/content/v1/5565fa7ce4b0f52509427764/94d7bcad-12f7-4d71-8232-28bceb04ed75/Speedball+Linocutter+Carving+Tools', 20),
-('figure_1', 2048, 'image/jpg', 'https://pascocamera.com/wp-content/uploads/Nikon-D7500.jpg', 21),
-('figure_1', 2048, 'image/jpg', 'https://ae01.alicdn.com/kf/H8daf26af77844a438c2114a3c427ef07a/Tripod-For-Phone-Flexible-Sponge-Octopus-Mini-Tripod-For-IPhone-Mini-Camera-Tripod-Phone-Holder-Clip.jpg', 22),
-('figure_1', 2048, 'image/webp', 'https://i.ebayimg.com/images/g/pmYAAOSw989buemm/s-l1200.webp', 23),
-('figure_1', 2048, 'image/jpg', 'https://www.shopapexel.com/cdn/shop/products/shopapexel-hb5-cpl-with-star-img4_800x.jpg?v=1695331032', 24);
+('figure_1', 300, 'image/jpg', 'https://pascocamera.com/wp-content/uploads/Nikon-D7500.jpg', 21),
+('figure_1', 300, 'image/jpg', 'https://ae01.alicdn.com/kf/H8daf26af77844a438c2114a3c427ef07a/Tripod-For-Phone-Flexible-Sponge-Octopus-Mini-Tripod-For-IPhone-Mini-Camera-Tripod-Phone-Holder-Clip.jpg', 22),
+('figure_1', 300, 'image/webp', 'https://i.ebayimg.com/images/g/pmYAAOSw989buemm/s-l1200.webp', 23),
+('figure_1', 300, 'image/jpg', 'https://www.shopapexel.com/cdn/shop/products/shopapexel-hb5-cpl-with-star-img4_800x.jpg?v=1695331032', 24);
 
+
+-- ____________________________________________________________________Posts
+-- ____________________________________________________________________Posts
+
+-- ____________________________________________________________________Posts
+
+-- ____________________________________________________________________Posts
+
+-- ____________________________________________________________________Posts
+
+-- Posts Seed Data
+
+-- Juan
+INSERT INTO posts (title, category, created_by, body, thumbnail, user_id)
+VALUES
+('Graffiti Art on Walls', 'Graffiti', 'felizj171', 'My latest mural in Brooklyn.', 'https://www.wallsauce.com/images/hero/cat/1131/645/graffiti.jpg', 1),
+('Sculpting a Modern Art Piece', 'Sculpting', 'felizj171', 'Work in progress on my stone sculpture.', 'https://images.saatchiart.com/saatchi/754804/art/8764464/7827947-HSC00923-6.jpg', 1),
+('Painting the City', 'Painting', 'felizj171', 'My thoughts on city life expressed through paint.', 'https://i.etsystatic.com/20523071/r/il/d59fb1/3316691680/il_570xN.3316691680_dlf1.jpg', 1),
+('The Art of Landscape Photography', 'Photography', 'Evan', 'Capturing nature’s vastness and beauty.', 'https://static.photocdn.pt/images/articles/2022/01/12/The_Keys_to_Beautiful_Landscape_Photography.webp', 3),
+('Cityscapes at Night', 'Photography', 'Evan', 'The city lights and their mesmerizing reflections.', 'https://iso.500px.com/wp-content/uploads/2014/07/hong-kong-the-peak-view.jpg', 3);
+-- ('Macro Photography Tips', 'Photography', 'Evan', 'Getting close with the world of the tiny.', 'url_to_macro_photo', 3),
+-- ('Portraits in Natural Light', 'Photography', 'Evan', 'Harnessing the power of the sun for emotive portraits.', 'url_to_portrait_photo', 3),
+-- ('Wildlife Adventures', 'Photography', 'Evan', 'The challenges and rewards of wildlife photography.', 'url_to_wildlife_photo', 3),
+
+INSERT INTO post_media (file_name, file_size, file_type, file_url, post_id)
+VALUES
+('figure_1', 300, 'image/jpg', 'https://www.wallsauce.com/images/hero/cat/1131/645/graffiti.jpg', 1),
+('figure_2', 300, 'image/webp', 'https://www.magicmurals.com/media/amasty/webp/catalog/product/cache/155d73b570b90ded8a140526fcb8f2da/F/O/FOT-0027284631_1_jpg.webp', 1),
+('figure_3', 300, 'image/jpg', 'https://storage.googleapis.com/pod_public/1300/167869.jpg', 1),
+('figure_1', 300, 'image/jpeg', 'https://images.saatchiart.com/saatchi/754804/art/8764464/7827947-HSC00923-6.jpg', 2),
+('figure_2', 300, 'image/jpg', 'https://www.bridgewaterstudio.net/hubfs/Blog_Images/Campaign%2005/foam-sculptures.jpg', 2),
+('figure_3', 300, 'image/jpg', 'https://www.aquasabi.com/media/image/product/19045/md/back-to-nature-river-stone-d.jpg', 2),
+('figure 1', 300, 'image/jpg', 'https://i.etsystatic.com/20523071/r/il/d59fb1/3316691680/il_570xN.3316691680_dlf1.jpg', 3),
+('figure 2', 300, 'image/jpg', 'https://i.etsystatic.com/23025695/r/il/2daf2d/4319668906/il_fullxfull.4319668906_n94j.jpg', 3),
+('figure 3', 300, 'image/jpg', 'https://i.etsystatic.com/20523071/r/il/d59fb1/3316691680/il_570xN.3316691680_dlf1.jpg', 3),
+-- Landscape
+('figure_1', 300, 'image/webp', 'https://static.photocdn.pt/images/articles/2022/01/12/The_Keys_to_Beautiful_Landscape_Photography.webp', 4),
+('figure_2', 300, 'image/jpg', 'https://www.adorama.com/alc/wp-content/uploads/2018/11/landscape-photography-tips-yosemite-valley-feature.jpg', 4),
+('figure_3', 300, 'image/jpg', 'https://thumbs.dreamstime.com/b/wonderful-summer-landscape-lavender-fields-provence-valensole-france-picturesque-nature-agriculture-area-popular-146780278.jpg', 4),
+-- Night Time CityScape
+('figure_1', 300, 'image/jpg', 'https://iso.500px.com/wp-content/uploads/2014/07/hong-kong-the-peak-view.jpg
+', 5),
+('figure_2', 300, 'image/jpeg', 'https://cc-prod.scene7.com/is/image/CCProdAuthor/cityscape-photography_P1_mobile_360x270?$pjpeg$&jpegSize=200&wid=720', 5),
+('figure_3', 300, 'image/jpg', 'https://cdn.mos.cms.futurecdn.net/oowFiyShRt5Pp3cnJbCDv9.jpg', 5);
+
+
+-- ('sculpture1_image1', 300, 'image/jpeg', 'url_to_sculpture1_image1', 2),
+-- ('sculpture1_image1', 300, 'image/jpeg', 'url_to_sculpture1_image1', 2),
 
 
