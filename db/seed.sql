@@ -99,10 +99,18 @@ VALUES
 ('Sculpting a Modern Art Piece', 'Sculpting', 'felizj171', 'Work in progress on my stone sculpture.', 'https://images.saatchiart.com/saatchi/754804/art/8764464/7827947-HSC00923-6.jpg', 1),
 ('Painting the City', 'Painting', 'felizj171', 'My thoughts on city life expressed through paint.', 'https://i.etsystatic.com/20523071/r/il/d59fb1/3316691680/il_570xN.3316691680_dlf1.jpg', 1),
 ('The Art of Landscape Photography', 'Photography', 'Evan', 'Capturing nature’s vastness and beauty.', 'https://static.photocdn.pt/images/articles/2022/01/12/The_Keys_to_Beautiful_Landscape_Photography.webp', 3),
-('Cityscapes at Night', 'Photography', 'Evan', 'The city lights and their mesmerizing reflections.', 'https://iso.500px.com/wp-content/uploads/2014/07/hong-kong-the-peak-view.jpg', 3);
+('Cityscapes at Night', 'Photography', 'Evan', 'The city lights and their mesmerizing reflections.', 'https://iso.500px.com/wp-content/uploads/2014/07/hong-kong-the-peak-view.jpg', 3),
 -- ('Macro Photography Tips', 'Photography', 'Evan', 'Getting close with the world of the tiny.', 'url_to_macro_photo', 3),
 -- ('Portraits in Natural Light', 'Photography', 'Evan', 'Harnessing the power of the sun for emotive portraits.', 'url_to_portrait_photo', 3),
 -- ('Wildlife Adventures', 'Photography', 'Evan', 'The challenges and rewards of wildlife photography.', 'url_to_wildlife_photo', 3),
+-- Painting Tutorials
+('Mastering Watercolor Techniques', 'Painting', 'Evan', 'Step 1: Begin with a simple sketch on watercolor paper. Step 2: Wet the paper with a clean brush. Step 3: Mix your desired colors using a palette. Step 4: Apply the paint using soft strokes. Step 5: Experiment with wet-on-wet and wet-on-dry techniques. Step 6: Allow layers to dry before adding details. Step 7: Finish with deeper colors for shadows and detailing.', 'https://jennarainey.com/wp-content/uploads/2021/05/BGTW-Two-Tech-shot-1.png', 3),
+('Exploring Acrylics for Beginners', 'Painting', 'Michel', 'Step 1: Set up your workspace with brushes, canvas, and acrylic paints. Step 2: Start with a basic sketch or background wash. Step 3: Layer your paints, starting with broader strokes. Step 4: Blend colors directly on the canvas for a smooth transition. Step 5: Use thicker paint for texture and depth. Step 6: Remember, acrylics dry fast - use a retarder if needed. Step 7: Seal your artwork with a clear varnish once done.', 'https://feelingnifty.com/wp-content/uploads/2020/06/how-to-paint-clouds-pink-sky-2-789x1024.jpg', 2),
+
+-- Sculpting Tutorials
+('Creating Lifelike Figures in Clay', 'Sculpting', 'sharukh', 'Step 1: Choose the right type of clay for your project. Step 2: Start with a wire armature for stability. Step 3: Apply clay over the armature, building the general shape. Step 4: Define features using sculpting tools. Step 5: Add textures for realism. Step 6: Regularly turn the sculpture to work from different angles. Step 7: Allow the sculpture to dry slowly, or bake if using oven-bake clay.', 'https://m.media-amazon.com/images/I/B1MGBRILKnS._SY250_.jpg', 4),
+('Basics of Stone Carving', 'Sculpting', 'Michel', 'Step 1: Select a soft stone like soapstone or alabaster for beginners. I have included this stone in my listings in the event you would like to purchase it. The image of the stone is in figure 4. Step 2: Sketch your design on paper and transfer the basic outline to the stone. See figure 5 for more details on a rough sketch. Step 3: Use chisels and hammers to remove large chunks of unwanted stone, as my assistant is doing in figure 1. Step 4: Refine the shape with rasps and files. Step 5: Sand the sculpture with increasingly fine grits for a smooth finish. Step 6: Polish with wax or stone sealants for protection. Figure 2 and 3 are examples of what my students have finished after taking my sculpting class', 'https://teucerwilson.co.uk/wp-content/uploads/2021/10/Teucer-Wilson-Carving-Techniques.jpeg', 2);
+
 
 INSERT INTO post_media (file_name, file_size, file_type, file_url, post_id)
 VALUES
@@ -123,10 +131,38 @@ VALUES
 ('figure_1', 300, 'image/jpg', 'https://iso.500px.com/wp-content/uploads/2014/07/hong-kong-the-peak-view.jpg
 ', 5),
 ('figure_2', 300, 'image/jpeg', 'https://cc-prod.scene7.com/is/image/CCProdAuthor/cityscape-photography_P1_mobile_360x270?$pjpeg$&jpegSize=200&wid=720', 5),
-('figure_3', 300, 'image/jpg', 'https://cdn.mos.cms.futurecdn.net/oowFiyShRt5Pp3cnJbCDv9.jpg', 5);
+('figure_3', 300, 'image/jpg', 'https://cdn.mos.cms.futurecdn.net/oowFiyShRt5Pp3cnJbCDv9.jpg', 5),
+
+('figure_1', 300, 'image/png', 'https://jennarainey.com/wp-content/uploads/2021/05/BGTW-Two-Tech-shot-1.png', 6),
+('figure_2', 300, 'image/jpg', 'https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/19414/images/JMqJaxczSleSZyhmyOtA_Landscape-painting-for-beginners.jpg', 6),
+('figure_3', 300, 'image/png', 'https://www.kitchentableclassroom.com/wp-content/uploads/2017/08/watercolor-techniques-collage-4-tiny-683x1024.png', 6),
+
+('figure_1', 300, 'image/jpg', 'https://feelingnifty.com/wp-content/uploads/2020/06/how-to-paint-clouds-pink-sky-2-789x1024.jpg', 7),
+('figure_2', 300, 'image/jpg', 'https://img-c.udemycdn.com/course/750x422/3044266_011f.jpg', 7),
+('figure_3', 300, 'image/jpg', 'https://crafts.arts.ncsu.edu/wp-content/uploads/sites/32/2023/07/Intro-to-Acrylics_Daniel-Creech.jpg', 7),
 
 
--- ('sculpture1_image1', 300, 'image/jpeg', 'url_to_sculpture1_image1', 2),
--- ('sculpture1_image1', 300, 'image/jpeg', 'url_to_sculpture1_image1', 2),
 
 
+
+-- sculpting
+('sculpture1_image1', 300, 'image/jpeg', 'https://teucerwilson.co.uk/wp-content/uploads/2021/10/Teucer-Wilson-Carving-Techniques.jpeg', 9),
+('sculpture1_image1', 300, 'image/jpg', 'https://5.imimg.com/data5/SELLER/Default/2020/11/GX/ZZ/MI/98132100/stone-carving-work.jpg', 9),
+('sculpture1_image1', 300, 'image/jpg', 'https://cdn.i-scmp.com/sites/default/files/d8/images/canvas/2022/09/30/d426fc9c-080d-4596-ba37-a37714107de9_8925f15f.jpg', 9),
+('sculpture1_image1', 300, 'image/jpg', 'https://images.squarespace-cdn.com/content/v1/58fd148be6f2e1ad3fd43b08/1505013903161-X6X9SUXQ9YEK89YQMSSP/IMG_1465.jpg?format=1000w', 9),
+('sculpture1_image1', 300, 'image/jpg', 'https://www.thesculpturepark.com/wordpress/wp-content/uploads/The-thinker-rodin-le-penseur-paris-sketches-13.jpg
+', 9),
+
+
+
+
+
+-- painting
+
+
+
+
+
+('sculpture1_image1', 300, 'image/jpg', 'https://m.media-amazon.com/images/I/B1MGBRILKnS._SY250_.jpg', 8),
+('sculpture1_image1', 300, 'image/jpg', 'https://i.ytimg.com/vi/ZGRStBE4b48/maxresdefault.jpg', 8),
+('sculpture1_image1', 300, 'image/jpg', 'https://www.keeeps.co.uk/cdn/shop/articles8pexels-monstera-5302903_Medium_7238bbe0-8756-4372-af7b-3d55f610a4ca_300x300.jpg?v=1637076397', 9);
