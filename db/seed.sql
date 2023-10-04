@@ -109,7 +109,7 @@ VALUES
 ('figure_1', 300, 'image/jpg', 'https://www.wallsauce.com/images/hero/cat/1131/645/graffiti.jpg', 1),
 ('figure_2', 300, 'image/webp', 'https://www.magicmurals.com/media/amasty/webp/catalog/product/cache/155d73b570b90ded8a140526fcb8f2da/F/O/FOT-0027284631_1_jpg.webp', 1),
 ('figure_3', 300, 'image/jpg', 'https://storage.googleapis.com/pod_public/1300/167869.jpg', 1),
-('figure_1', 300, 'image/jpeg', 'https://images.saatchiart.com/saatchi/754804/art/8764464/7827947-HSC00923-6.jpg', 2),
+('figure_1', 300, 'image/jpg', 'https://images.saatchiart.com/saatchi/754804/art/8764464/7827947-HSC00923-6.jpg', 2),
 ('figure_2', 300, 'image/jpg', 'https://www.bridgewaterstudio.net/hubfs/Blog_Images/Campaign%2005/foam-sculptures.jpg', 2),
 ('figure_3', 300, 'image/jpg', 'https://www.aquasabi.com/media/image/product/19045/md/back-to-nature-river-stone-d.jpg', 2),
 ('figure 1', 300, 'image/jpg', 'https://i.etsystatic.com/20523071/r/il/d59fb1/3316691680/il_570xN.3316691680_dlf1.jpg', 3),
