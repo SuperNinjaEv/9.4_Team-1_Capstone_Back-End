@@ -80,7 +80,7 @@ CREATE TABLE user_favs (
   fav_id SERIAL PRIMARY KEY,
   name TEXT,
   post_id INT NOT NULL,
-  user_id INT NOT NULL REFERENCES users(user_id) ON DE
+  user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE
 );
 -- CREATE TABLE products (
 --   product_id SERIAL PRIMARY KEY,
