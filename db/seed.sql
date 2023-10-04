@@ -36,9 +36,8 @@ VALUES
 ('Acrylic Paint Set', 'Set of 24 acrylic paints.', 35.00, 10, 'good', 'Painting', 'sharukh', 4, 'https://bjs.scene7.com/is/image/bjs/172772?$bjs-Zoom$'),
 ('Screen Printing Kit', 'All-in-one screen printing kit.', 100.00, 3, 'neutral', 'Printmaking', 'sharukh', 4, 'https://s7.orientaltrading.com/is/image/OrientalTrading/13730110?$PDP_VIEWER_IMAGE$'),
 ('Canvas', '16x20 stretched canvas.', 18.00, 15, 'good', 'Painting', 'sharukh', 4, 'https://i.pinimg.com/originals/33/f1/7a/33f17a74cdd315759106d461b1c0acd3.jpg'),
-('Linocut Tools', 'Set of tools for linocut printmaking.', 22.00, 7, 'neutral', 'Printmaking', 'sharukh', 4, 'https://images.squarespace-cdn.com/content/v1/5565fa7ce4b0f52509427764/94d7bcad-12f7-4d71-8232-28bceb04ed75/Speedball+Linocutter+Carving+Tools');
+('Linocut Tools', 'Set of tools for linocut printmaking.', 22.00, 7, 'neutral', 'Printmaking', 'sharukh', 4, 'https://images.squarespace-cdn.com/content/v1/5565fa7ce4b0f52509427764/94d7bcad-12f7-4d71-8232-28bceb04ed75/Speedball+Linocutter+Carving+Tools'),
 -- Photography tools
-
 ('DSLR Camera', 'High-resolution digital SLR camera.', 1200.00, 3, 'good', 'Photography', 'Evan', 3, 'https://pascocamera.com/wp-content/uploads/Nikon-D7500.jpg'),
 ('Tripod', 'Sturdy tripod suitable for various camera models.', 100.00, 5, 'good', 'Photography', 'Evan', 3, 'https://ae01.alicdn.com/kf/H8daf26af77844a438c2114a3c427ef07a/Tripod-For-Phone-Flexible-Sponge-Octopus-Mini-Tripod-For-IPhone-Mini-Camera-Tripod-Phone-Holder-Clip.jpg'),
 ('Photography Lightbox', 'Lightbox for product photography.', 75.00, 2, 'neutral', 'Photography', 'Evan', 3, 'https://i.ebayimg.com/images/g/pmYAAOSw989buemm/s-l1200.webp'),
@@ -48,10 +47,10 @@ VALUES
 
 INSERT INTO tool_media (
     file_name,
-    file_size,  -- You can add appropriate file sizes for each file
+    file_size,  
     file_type,
     file_url,
-    tool_id  -- Assuming tool IDs start from 1 and increment sequentially for every good record
+    tool_id  
 )
 VALUES 
 ('figure_1', 300, 'image/jpg', 'https://m.media-amazon.com/images/I/51d5u5bP97L._AC_UF894,1000_QL80_.jpg', 1),
@@ -75,14 +74,11 @@ VALUES
 ('figure_1', 300, 'image/WebP', 'https://bjs.scene7.com/is/image/bjs/172772?$bjs-Zoom$', 17),
 ('figure_1', 300, 'image/WebP', 'https://s7.orientaltrading.com/is/image/OrientalTrading/13730110?$PDP_VIEWER_IMAGE$', 18),
 ('figure_1', 300, 'image/jpg', 'https://i.pinimg.com/originals/33/f1/7a/33f17a74cdd315759106d461b1c0acd3.jpg', 19),
-('figure_1', 300, 'image/WebP', 'https://images.squarespace-cdn.com/content/v1/5565fa7ce4b0f52509427764/94d7bcad-12f7-4d71-8232-28bceb04ed75/Speedball+Linocutter+Carving+Tools', 20)
-
-
-
+('figure_1', 300, 'image/WebP', 'https://images.squarespace-cdn.com/content/v1/5565fa7ce4b0f52509427764/94d7bcad-12f7-4d71-8232-28bceb04ed75/Speedball+Linocutter+Carving+Tools', 20),
 ('figure_1', 2048, 'image/jpg', 'https://pascocamera.com/wp-content/uploads/Nikon-D7500.jpg', 21),
 ('figure_1', 2048, 'image/jpg', 'https://ae01.alicdn.com/kf/H8daf26af77844a438c2114a3c427ef07a/Tripod-For-Phone-Flexible-Sponge-Octopus-Mini-Tripod-For-IPhone-Mini-Camera-Tripod-Phone-Holder-Clip.jpg', 22),
-('lightbox_image', 2048, 'image/webp', 'https://i.ebayimg.com/images/g/pmYAAOSw989buemm/s-l1200.webp', 23),
-('lens_kit_image', 2048, 'image/jpg', 'https://www.shopapexel.com/cdn/shop/products/shopapexel-hb5-cpl-with-star-img4_800x.jpg?v=1695331032', 24);
+('figure_1', 2048, 'image/webp', 'https://i.ebayimg.com/images/g/pmYAAOSw989buemm/s-l1200.webp', 23),
+('figure_1', 2048, 'image/jpg', 'https://www.shopapexel.com/cdn/shop/products/shopapexel-hb5-cpl-with-star-img4_800x.jpg?v=1695331032', 24);
 
 
 
